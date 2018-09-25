@@ -35,7 +35,7 @@ public class PrendrephotoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (v.getId() == R.id.capture) { // C'est notre bouton alors affichage d'un message
                     Toast.makeText(getApplicationContext(), "capture", Toast.LENGTH_SHORT).show();
-                    //prendreUnePhoto();
+
                 }
             }
         });
@@ -43,44 +43,6 @@ public class PrendrephotoActivity extends AppCompatActivity {
 
 
     }
-    /**
-     * accés a l'appareil photo
-
-    private void prendreUnePhoto () {
-
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //test si appareil photo marche
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            //création d'un nom de fichier unique
-            String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            File photoDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-            try {
-                File photoFile = File.createTempFile("photo" + date, "jpg", photoDir);
-                chemin_photo = photoFile.getAbsolutePath();
-                //creation de l'accés a ce fichier
-                Uri photouri = FileProvider.getUriForFile(PrendrephotoActivity.this,
-                        PrendrephotoActivity.this.getApplicationContext().getPackageName() + ".provider",
-                        photoFile);
-                //transfert de la photo vers le fichier temporaire
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, photouri);
-                startActivityForResult(intent, 1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }*/
-    /**
-     * retour de l'appel de l'appareil photo
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1 && resultCode==RESULT_OK){
-            Bitmap image;
-            image = BitmapFactory.decodeFile(chemin_photo);
-            imageAffiche.setImageBitmap(image);
-        }
-
-    }*/
+    
 }
 
