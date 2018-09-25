@@ -23,7 +23,7 @@ public class PrendrephotoActivity extends AppCompatActivity {
 
         ImageView imageAffiche;
         Button capture;
-        private String chemin_photo=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +43,6 @@ public class PrendrephotoActivity extends AppCompatActivity {
 
 
     }
-    
+
 }
 

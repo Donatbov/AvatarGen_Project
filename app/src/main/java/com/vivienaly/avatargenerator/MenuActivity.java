@@ -1,17 +1,11 @@
 package com.vivienaly.avatargenerator;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.*;
 import android.view.View;
-import android.view.View.OnClickListener;
 
 
 public class MenuActivity extends AppCompatActivity {
@@ -28,7 +22,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         Button photo=(Button)findViewById(R.id.photo); // Récupération de l'instance du bouton prendre une photo
-        Button import_photo=(Button)findViewById(R.id.importer_photo); // Récupération de l'instance  bouton importer une photo
+        final Button import_photo=(Button)findViewById(R.id.importer_photo); // Récupération de l'instance  bouton importer une photo
         Button creer_avatar=(Button)findViewById(R.id.creer_avatar); // Récupération de l'instance creer un avatar
         Button voir_avatar=(Button)findViewById(R.id.voir_avatar); // Récupération de l'instance voir les avatars
 
@@ -47,6 +41,8 @@ public class MenuActivity extends AppCompatActivity {
                                     public void onClick(View v) {
                                         if (v.getId() == R.id.importer_photo) { // C'est notre bouton ? oui, alors affichage d'un message
                                             Toast.makeText(getApplicationContext(), "importer", Toast.LENGTH_SHORT).show();
+                                            /*Intent importerphoto = new Intent(MenuActivity.this, ImporterPhoto.class);
+                                            startActivity(importerphoto);*/
                                         }
                                     }
                                 });
