@@ -60,7 +60,7 @@ public class ImporterPhoto extends AppCompatActivity {
 
                 import_view.setImageBitmap(BitmapFactory
                         .decodeFile(ImageDecode));
-                Toast.makeText(this, "tres bien" + ImageDecode, Toast.LENGTH_LONG)
+                Toast.makeText(this, ImageDecode, Toast.LENGTH_LONG)
                         .show();
 
             }
