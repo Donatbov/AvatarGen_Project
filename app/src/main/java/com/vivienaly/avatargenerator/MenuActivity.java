@@ -37,7 +37,7 @@ public class MenuActivity extends AppCompatActivity {
                                      }
                                  });
 
-       import_photo.setOnClickListener(new View.OnClickListener() {
+        import_photo.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         if (v.getId() == R.id.importer_photo) { // C'est notre bouton ? oui, alors affichage d'un message
                                             Toast.makeText(getApplicationContext(), "importer", Toast.LENGTH_SHORT).show();
@@ -46,7 +46,7 @@ public class MenuActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
-       creer_avatar.setOnClickListener(new View.OnClickListener() {
+        creer_avatar.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         if (v.getId() == R.id.creer_avatar) { // C'est notre bouton ? oui, alors affichage d'un message
                                             Toast.makeText(getApplicationContext(), "creer", Toast.LENGTH_SHORT).show();
@@ -61,7 +61,6 @@ public class MenuActivity extends AppCompatActivity {
                                     }
                                 });
 
-
-}
+    }
 
 }
