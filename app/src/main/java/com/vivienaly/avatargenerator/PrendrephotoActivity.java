@@ -23,6 +23,7 @@ public class PrendrephotoActivity extends AppCompatActivity {
 
         ImageView imageAffiche;
         Button capture;
+        static final int CAM_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,10 @@ public class PrendrephotoActivity extends AppCompatActivity {
         //evenement click sur le bouton
         capture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager())!=null) {
+                    startActivityForResult(takePictureIntent, CAM_REQUEST);
+                }
                 if (v.getId() == R.id.capture) { // C'est notre bouton alors affichage d'un message
                     Toast.makeText(getApplicationContext(), "capture", Toast.LENGTH_SHORT).show();
 
@@ -42,6 +47,27 @@ public class PrendrephotoActivity extends AppCompatActivity {
 
 
 
+    }
+    private File getFile(){
+
+        File folder = new File("sdcard/camera_app");
+
+        if(!folder.exists())
+        {
+            folder.mkdir();
+        }
+
+        File image_file = new File(folder,"cam_image.jpg");
+        return image_file;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CAM_REQUEST && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageAffiche.setImageBitmap(imageBitmap);
+        }
     }
 
 }
