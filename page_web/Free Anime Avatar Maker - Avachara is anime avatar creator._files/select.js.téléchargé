@@ -1,0 +1,744 @@
+URL_PATH = "../";
+eyedraw = false;
+var bodyurl = ses_bodyurl;
+var faceurl = ses_faceurl;
+var eyeurl = ses_eyeurl;
+var noseurl = ses_noseurl;
+var mouthurl = ses_mouthurl;
+var browurl = ses_browurl;
+var hairurl = ses_hairurl;
+
+if(ses_topsurl) var topsurl = "../fashion/" + ses_topsurl;
+if(ses_outerurl) var outerurl = "../fashion/" + ses_outerurl;
+if(ses_pantsurl) var pantsurl = "../fashion/" + ses_pantsurl;
+if(ses_skirturl) var skirturl = "../fashion/" + ses_skirturl;
+if(ses_dressurl) var dressurl = "../fashion/" + ses_dressurl;
+if(ses_haturl) var haturl = "../fashion/" + ses_haturl;
+if(ses_glassesurl) var glassesurl = "../fashion/" + ses_glassesurl;
+
+onload = function() {
+	sex = $.cookie("sex"); //ローカル変数でない場合は、varはつけない。
+	
+	if(ses_user_sys){
+		//顔をセット
+		if(ses_user_sys == "anichara"){
+			if(!$.cookie("faceurl"))　$.cookie("faceurl", faceurl);
+		}
+	}
+	
+	if($.cookie("faceurl")){ //顔がセットされていれば
+		if(sex == "girl"){
+			$.cookie("bodyurl", URL_PATH+"member/img/g_body/body1_pose0.png");
+		}else{
+			$.cookie("bodyurl", URL_PATH+"member/img/m_body/body1_pose0.png");
+		}
+	}
+	if(!($.cookie("backurl"))){ //顔がセットされていれば
+		if(sex == "girl"){
+			$.cookie("backurl", URL_PATH+"wallpaper/img/default/3.png");
+		}else{
+			$.cookie("backurl", URL_PATH+"wallpaper/img/default/1.png");
+		}
+	}
+ 	draw();
+ 	
+ 	//試着OFFボタン
+ 	if($("#fit_tops").size() != 0) {
+		if($.cookie("topsurl")){
+			$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_off.", "_on."));
+		}else{
+			$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_on.", "_off."));
+		}
+		if($.cookie("outerurl")){
+			$("#fit_outer").attr("src",$("#fit_outer").attr("src").replace("_off.", "_on."));
+		}else{
+			$("#fit_outer").attr("src",$("#fit_outer").attr("src").replace("_on.", "_off."));
+		}
+		if($.cookie("pantsurl")){
+			$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_off.", "_on."));
+		}else{
+			$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_on.", "_off."));
+		}
+		if($.cookie("skirturl")){
+			$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_off.", "_on."));
+		}else{
+			$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_on.", "_off."));
+		}
+		if($.cookie("dressurl")){
+			$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_off.", "_on."));
+		}else{
+			$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));
+		}
+		if($.cookie("haturl")){
+			$("#fit_hat").attr("src",$("#fit_hat").attr("src").replace("_off.", "_on."));
+		}else{
+			$("#fit_hat").attr("src",$("#fit_hat").attr("src").replace("_on.", "_off."));
+		}
+		if($.cookie("glassesurl")){
+			$("#fit_glasses").attr("src",$("#fit_glasses").attr("src").replace("_off.", "_on."));
+		}else{
+			$("#fit_glasses").attr("src",$("#fit_glasses").attr("src").replace("_on.", "_off."));
+		}
+ 	}
+ 	//まばたき
+ 	if($.cookie("eyeurl")){
+	 	var id = setInterval(function(){
+	 		var current_time = new Date();
+			/* まばたきする */
+			if(current_time%30 == 1){
+				eyedraw = true;
+				if(sex == "girl"){
+					$("#parts_eye").attr("src","img/m/g_eye/1_5.png");
+				}else{
+					$("#parts_eye").attr("src","img/m/m_eye/1_5.png");
+				}
+			}else{
+				if(eyedraw){
+					eyedraw = false;
+					$("#parts_eye").attr("src",$.cookie("eyeurl").replace("img/", "img/m/"));
+				}
+			} 
+	 	}, 200); // 100ms置きに実行
+ 	}
+};
+
+function draw() {
+	if($.cookie("faceurl")){
+		if($.cookie("faceurl").match(/_[a-z][a-z].png$/)){
+			if($.cookie("bodyurl")){
+				bodyurl = $.cookie("bodyurl").replace(/_([a-z][a-z]).png$/, ".png");
+				skincolor = $.cookie("faceurl").match(/_([a-z][a-z]).png$/);
+				$.cookie("bodyurl", bodyurl.replace(".png", "_"+ skincolor[1] +".png"));
+			}else{
+				skincolor = $.cookie("faceurl").match(/_([a-z][a-z]).png$/);
+				if(sex == "girl"){
+					$.cookie("bodyurl", URL_PATH+"member/img/g_body/body1_pose0_"+ skincolor[1] +".png");
+				}else{
+					$.cookie("bodyurl", URL_PATH+"member/img/m_body/body1_pose0_"+ skincolor[1] +".png");
+				}
+			}
+		}else{
+			if(sex == "girl"){
+				$.cookie("bodyurl", URL_PATH+"member/img/g_body/body1_pose0.png");
+			}else{
+				$.cookie("bodyurl", URL_PATH+"member/img/m_body/body1_pose0.png");
+			}
+		}
+	}
+	
+	//レイヤー１（背景）
+	$("#wp_back").attr("src",$.cookie("backurl"));
+	
+	//レイヤー2（ボディ）
+	if($.cookie("bodyurl")){
+		$("#parts_body").attr("src",$.cookie("bodyurl").replace("img/", "img/m/"));
+	}
+	//レイヤー3（シューズ）
+	if($.cookie("shoesurl")){
+		$("#fs_shoes").attr("src",$.cookie("shoesurl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_shoes").attr("src","./img/0.png");
+	}
+	//レイヤー4（パンツ／スカート）
+	if($.cookie("pantsurl")){
+		$("#fs_pants").attr("src",$.cookie("pantsurl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_pants").attr("src","./img/0.png");
+	}
+	if($.cookie("skirturl")){
+		$("#fs_skirt").attr("src",$.cookie("skirturl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_skirt").attr("src","./img/0.png");
+	}
+	//レイヤー5（トップス／ドレス）
+	if($.cookie("topsurl")){
+		$("#fs_tops").attr("src",$.cookie("topsurl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_tops").attr("src","./img/0.png");
+	}
+	if($.cookie("dressurl")){
+		$("#fs_dress").attr("src",$.cookie("dressurl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_dress").attr("src","./img/0.png");
+	}
+	//レイヤー6（アウター）
+	if($.cookie("outerurl")){
+		$("#fs_outer").attr("src",$.cookie("outerurl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_outer").attr("src","./img/0.png");
+	}
+	//レイヤー7（顔）
+	if($.cookie("faceurl")){
+		$("#parts_face").attr("src",$.cookie("faceurl").replace("img/", "img/m/"));
+	}else{
+		$("#parts_face").attr("src","./img/0.png");
+	}
+	//レイヤー8(顔パーツ)
+	if($.cookie("eyeurl")){
+		$("#parts_eye").attr("src",$.cookie("eyeurl").replace("img/", "img/m/"));
+	}else{
+		$("#parts_eye").attr("src","./img/0.png");
+	}
+	if($.cookie("mouthurl")){
+		$("#parts_mouth").attr("src",$.cookie("mouthurl").replace("img/", "img/m/"));
+	}else{
+		$("#parts_mouth").attr("src","./img/0.png");
+	}
+	if($.cookie("noseurl")){
+		$("#parts_nose").attr("src",$.cookie("noseurl").replace("img/", "img/m/"));
+	}else{
+		$("#parts_nose").attr("src","./img/0.png");
+	}
+	if($.cookie("browurl")){
+		$("#parts_brow").attr("src",$.cookie("browurl").replace("img/", "img/m/"));
+	}else{
+		$("#parts_brow").attr("src","./img/0.png");
+	}
+	//レイヤー9（メガネ）
+	if($.cookie("glassesurl")){
+		$("#fs_glasses").attr("src",$.cookie("glassesurl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_glasses").attr("src","./img/0.png");
+	}
+	//レイヤー10（髪）
+	if($.cookie("hairurl")){
+		$("#parts_hair").attr("src",$.cookie("hairurl").replace("img/", "img/m/"));
+		$("#parts_hair_back").attr("src",$.cookie("hairurl").replace("img/", "img/back_m/"));
+	}else{
+		$("#parts_hair").attr("src","./img/0.png");
+	}
+	//レイヤー11（帽子／道具／アイコン）
+	if($.cookie("haturl")){
+		$("#fs_hat").attr("src",$.cookie("haturl").replace("img/", "img/m/"));
+	}else{
+		$("#fs_hat").attr("src","./img/0.png");
+	}
+	if($.cookie("propertyurl")){
+		$("#item_property").attr("src",$.cookie("propertyurl").replace("img/", "img/m/"));
+	}else{
+		$("#item_property").attr("src","./img/0.png");
+	}
+	if($.cookie("iconurl")){
+		$("#item_icon").attr("src",$.cookie("iconurl").replace("img/", "img/m/"));
+	}else{
+		$("#item_icon").attr("src","./img/0.png");
+	}
+}
+
+$(function(){
+	$(".back").live('touchstart',function(){
+		$(this).css("border","1px solid #999999");
+	});
+	$(".back").live('touchend',function(){
+		$(this).css("border","");
+	});
+	$(".back").live('click',function(){
+		$.cookie("backurl",$(this).attr("src").replace("_s.png",".png"));
+		draw();
+	})
+})
+
+$(function(){
+	$("#myface").click(function(){
+		$.cookie("bodyurl", ses_bodyurl.replace("img/", URL_PATH+"member/img/"));
+		$.cookie("faceurl", ses_faceurl);
+		$.cookie("eyeurl", ses_eyeurl);
+		$.cookie("noseurl", ses_noseurl);
+		$.cookie("mouthurl", ses_mouthurl);
+		$.cookie("browurl", ses_browurl);
+		$.cookie("hairurl", ses_hairurl.replace("img/", URL_PATH+"hairsalon/img/"));
+		//服をセット
+		if(topsurl){
+			$.cookie("topsurl", topsurl);
+		}else{
+			$.cookie("topsurl", null);
+		}
+		if(outerurl){
+			$.cookie("outerurl", outerurl);
+		}else{
+			$.cookie("outerurl", null);
+		}
+		if(pantsurl){
+			$.cookie("pantsurl", pantsurl);
+		}else{
+			$.cookie("pantsurl", null);
+		}
+		if(skirturl){
+			$.cookie("skirturl", skirturl);
+		}else{
+			$.cookie("skirturl", null);
+		}
+		if(dressurl){
+			$.cookie("dressurl", dressurl);
+		}else{
+			$.cookie("dressurl", null);
+		}
+		if(haturl){
+			$.cookie("haturl", haturl);
+		}else{
+			$.cookie("haturl", null);
+		}
+		if(glassesurl){
+			$.cookie("glassesurl", glassesurl);
+		}else{
+			$.cookie("glassesurl", null);
+		}
+		draw();
+	})
+})
+
+$(function(){
+	$("#sex_men").click(function(){
+		$.cookie("sex","men",{expires:1,path:'/'});
+		location.reload();
+	})
+	$("#sex_girl").click(function(){
+		$.cookie("sex","girl",{expires:1,path:'/'});
+		location.reload();
+	})
+})
+
+
+$(function(){
+	$("#face000").live('click',function(){
+		$.cookie("faceurl",null);
+		draw();
+	})
+	$(".face").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".face").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".face").live('click', function(){
+		$.cookie("faceurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+$(function(){
+	$("#eye000").live('click',function(){
+		$.cookie("eyeurl",null);
+		draw();
+	})
+	$(".eye").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".eye").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(document).on('click','.eye', function(){ //1.7以上から liveは1.9より廃止
+		$.cookie("eyeurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+$(function(){
+	$("#nose000").live('click',function(){
+		$.cookie("noseurl",null);
+		draw();
+	})
+	$(".nose").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".nose").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".nose").live('click', function(){
+		$.cookie("noseurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+$(function(){
+	$("#mouth000").live('click',function(){
+		$.cookie("mouthurl",null);
+		draw();
+	})
+	$(".mouth").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".mouth").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".mouth").live('click', function(){
+		$.cookie("mouthurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+$(function(){
+	$("#brow000").live('click',function(){
+		$.cookie("browurl",null);
+		draw();
+	})
+	$(".brow").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".brow").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".brow").live('click', function(){
+		$.cookie("browurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+$(function(){
+	$("#hair000").live('click',function(){
+		$.cookie("hairurl",null);
+		draw();
+	})
+	$(".hair").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".hair").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".hair").live('click', function(){
+		$.cookie("hairurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+$(function(){
+	if($.cookie("bodyurl")){
+		$("#frame").html("<img src='"+$.cookie("bodyurl")+"' />")
+	}
+	$("#body000").click(function(){
+		$.cookie("bodyurl",null);
+		draw();
+	})
+	
+	$(".body").each(function(index){
+		$(this).bind('touchstart',function(){
+			$(this).css("background-color","#EEEEEE");
+		});
+		$(this).bind('touchend',function(){
+			$(this).css("background-color","");
+		});
+		$(this).hover(
+			function(){
+				$(this).css("background-color","#EEEEEE");
+			},
+			function(){
+				$(this).css("background-color","");
+			}
+		);
+		$(this).live('click', function(){
+			$.cookie("bodyurl",$(this).attr("src"));
+			draw();
+		})
+	})
+	
+})
+
+$(function(){
+	if($.cookie("glassesurl")){
+		$("#frame").html("<img src='"+$.cookie("glassesurl")+"' />")
+	}
+	$("#glasses000").live('click',function(){
+		$.cookie("glassesurl",null);
+		draw();
+	})
+	$(".glasses").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".glasses").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".glasses").live('click', function(){
+		$.cookie("glassesurl",$(this).attr("src"));
+		draw();
+		$("#fit_glasses").attr("src",$("#fit_glasses").attr("src").replace("_off.", "_on."));//試着OFFボタン
+	})
+	//試着OFFボタン
+	$("#fit_glasses").live('click',function(){
+		$.cookie("glassesurl",null);
+		$("#fit_glasses").attr("src",$("#fit_glasses").attr("src").replace("_on.", "_off."));
+		draw();
+	})
+})
+
+$(function(){
+	if($.cookie("propertyurl")){
+		$("#frame").html("<img src='"+$.cookie("propertyurl")+"' />")
+	}
+	$("#property000").live('click',function(){
+		$.cookie("propertyurl",null);
+		draw();
+	})
+	$(".property").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".property").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".property").live('click', function(){
+		$.cookie("propertyurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+$(function(){
+	if($.cookie("iconurl")){
+		$("#frame").html("<img src='"+$.cookie("haturl")+"' />")
+	}
+	$("#icon000").live('click',function(){
+		$.cookie("iconurl",null);
+		draw();
+	})
+	$(".icon").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".icon").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+	$(".icon").live('click', function(){
+		$.cookie("iconurl",$(this).attr("src"));
+		draw();
+	})
+})
+
+/* **************************** 服 */
+$(function(){
+	$("#tops000").live('click', function(){
+		$.cookie("topsurl",null);
+		draw();
+	})
+	$(".tops").live('touchstart',function(){
+		$(this).css("border","4px solid #ccc");
+	});
+	$(".tops").live('touchend',function(){
+		$(this).css("border","4px solid #fff");
+	});
+	$(".tops").live('click', function(){
+		$.cookie("topsurl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+		$.cookie("dressurl",null); //ドレスは脱ぐ
+		draw();
+		$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_off.", "_on."));//試着OFFボタン
+		$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+	})
+	//試着OFFボタン
+	$("#fit_tops").live('click',function(){
+		$.cookie("topsurl",null);
+		$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_on.", "_off."));
+		draw();
+	})
+})
+
+$(function(){
+	$("#t000").live('click', function(){
+		$.cookie("topsurl",null);
+		draw();
+	})
+	$(".t-shirt").live('touchstart',function(){
+		$(this).css("border","4px solid #ccc");
+	});
+	$(".t-shirt").live('touchend',function(){
+		$(this).css("border","4px solid #fff");
+	});
+	$(".t-shirt").live('click', function(){
+		$.cookie("topsurl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+		$.cookie("dressurl",null); //ドレスは脱ぐ
+		draw();
+		$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_off.", "_on."));//試着OFFボタン
+		$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+	})
+})
+
+
+$(function(){
+	$("#outer000").live('click', function(){
+		$.cookie("outerurl",null);
+		draw();
+	})
+	$(".outer").live('touchstart',function(){
+		$(this).css("border","4px solid #ccc");
+	});
+	$(".outer").live('touchend',function(){
+		$(this).css("border","4px solid #fff");
+	});
+	$(".outer").live('click', function(){
+		$.cookie("outerurl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+		draw();
+		$("#fit_outer").attr("src",$("#fit_outer").attr("src").replace("_off.", "_on."));//試着OFFボタン
+	})
+	//試着OFFボタン
+	$("#fit_outer").live('click',function(){
+		$.cookie("outerurl",null);
+		$("#fit_outer").attr("src",$("#fit_outer").attr("src").replace("_on.", "_off."));
+		draw();
+	})
+})
+
+$(function(){
+	$("#pants000").live('click', function(){
+		$.cookie("pantsurl",null);
+		draw();
+	})
+	$(".pants").each(function(index){
+		$(".pants").live('touchstart',function(){
+			$(this).css("border","4px solid #ccc");
+		});
+		$(".pants").live('touchend',function(){
+			$(this).css("border","4px solid #fff");
+		});
+		$(".pants").live('click', function(){
+			$.cookie("pantsurl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+			$.cookie("dressurl",null); //ドレスは脱ぐ
+			$.cookie("skirturl",null); //スカートは脱ぐ
+			draw();
+			$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_off.", "_on."));//試着OFFボタン
+			$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+			$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+		})
+	})
+	//試着OFFボタン
+	$("#fit_pants").live('click',function(){
+		$.cookie("pantsurl",null);
+		$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_on.", "_off."));
+		draw();
+	})
+})
+
+$(function(){
+	$("#skirt000").live('click',function(){
+		$.cookie("skirturl",null);
+		draw();
+	})
+	$(".skirt").live('touchstart',function(){
+		$(this).css("border","4px solid #ccc");
+	});
+	$(".skirt").live('touchend',function(){
+		$(this).css("border","4px solid #fff");
+	});
+	$(".skirt").live('click',function(){
+		$.cookie("skirturl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+		$.cookie("pantsurl",null);//ドレスとパンツは脱ぐ
+		$.cookie("dressurl",null);
+		draw();
+		$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_off.", "_on."));//試着OFFボタン
+		$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+		$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+	})
+	//試着OFFボタン
+	$("#fit_skirt").live('click',function(){
+		$.cookie("skirturl",null);
+		$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_on.", "_off."));
+		draw();
+	})
+})
+
+$(function(){
+	$("#dress000").live('click',function(){
+		$.cookie("dressurl",null);
+		draw();
+	})
+	$(".dress").live('touchstart',function(){
+		$(this).css("border","4px solid #ccc");
+	});
+	$(".dress").live('touchend',function(){
+		$(this).css("border","4px solid #fff");
+	});
+	$(".dress").live('click',function(){
+		$.cookie("dressurl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+		$.cookie("topsurl",null);//服とパンツとスカートは脱ぐ
+		$.cookie("pantsurl",null);
+		$.cookie("skirturl",null);
+		draw();
+		$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_off.", "_on."));//試着OFFボタン
+		$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+		$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+		$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_on.", "_off."));//試着ボタンONからOFF
+	})
+	//試着OFFボタン
+	$("#fit_dress").live('click',function(){
+		$.cookie("dressurl",null);
+		$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));
+		draw();
+	})
+})
+
+$(function(){
+	$("#shoes000").live('click',function(){
+		$.cookie("shoesurl",null);
+		draw();
+	})
+	$(".shoes").live('touchstart',function(){
+		$(this).css("border","4px solid #ccc");
+	});
+	$(".shoes").live('touchend',function(){
+		$(this).css("border","4px solid #fff");
+	});
+	$(".shoes").live('click', function(){
+		$.cookie("shoesurl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+		draw();
+	})
+})
+
+$(function(){
+	$("#hat000").live('click',function(){
+		$.cookie("haturl",null);
+		draw();
+	})
+	$(".hat").live('touchstart',function(){
+		$(this).css("border","4px solid #ccc");
+	});
+	$(".hat").live('touchend',function(){
+		$(this).css("border","4px solid #fff");
+	});
+	$(".hat").live('click', function(){
+		$.cookie("haturl",$(this).attr("src").replace("_s.jpg", ".png").replace(".jpg", ".png"));
+		draw();
+		$("#fit_hat").attr("src",$("#fit_hat").attr("src").replace("_off.", "_on."));//試着OFFボタン
+	})
+	//試着OFFボタン
+	$("#fit_hat").live('click',function(){
+		$.cookie("haturl",null);
+		$("#fit_hat").attr("src",$("#fit_hat").attr("src").replace("_on.", "_off."));
+		draw();
+	})
+})
+
+$(function(){
+	$(".col_btn").live('click', function(){
+		//alert("test");
+		$.cookie($(this).attr("cat") + "url", URL_PATH+"fashion/img/" + $(this).attr("alt") + ".png");
+		//試着ボタンの制御
+		if($(this).attr("cat").indexOf("tops") != -1){
+			$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_off.", "_on."));//試着OFFボタン
+			$.cookie("dressurl",null);//ドレスは脱ぐ
+			$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+		}else if($(this).attr("cat").indexOf("outer") != -1){
+			$("#fit_outer").attr("src",$("#fit_outer").attr("src").replace("_off.", "_on."));//試着OFFボタン
+		}else if($(this).attr("cat").indexOf("pants") != -1){
+			$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_off.", "_on."));//試着OFFボタン
+			$.cookie("dressurl",null);//ドレスは脱ぐ
+			$.cookie("skirturl",null);//スカートは脱ぐ
+			$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+			$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+		}else if($(this).attr("cat").indexOf("skirt") != -1){
+			$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_off.", "_on."));//試着OFFボタン
+			$.cookie("dressurl",null);//ドレスは脱ぐ
+			$.cookie("pantsurl",null);//パンツは脱ぐ
+			$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+			$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+		}else if($(this).attr("cat").indexOf("dress") != -1){
+			$("#fit_dress").attr("src",$("#fit_dress").attr("src").replace("_off.", "_on."));//試着OFFボタン
+			$.cookie("topsurl",null);//トップスは脱ぐ
+			$.cookie("pantsurl",null);//パンツは脱ぐ
+			$.cookie("skirturl",null);//スカートは脱ぐ
+			$("#fit_tops").attr("src",$("#fit_tops").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+			$("#fit_pants").attr("src",$("#fit_pants").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+			$("#fit_skirt").attr("src",$("#fit_skirt").attr("src").replace("_on.", "_off."));//試着ボタンONからOFFへ
+		}else if($(this).attr("cat").indexOf("shose") != -1){
+			$("#fit_shose").attr("src",$("#fit_shose").attr("src").replace("_off.", "_on."));//試着OFFボタン
+		}else if($(this).attr("cat").indexOf("hat") != -1){
+			$("#fit_hat").attr("src",$("#fit_hat").attr("src").replace("_off.", "_on."));//試着OFFボタン
+		}
+		draw();
+	})
+})
+
+

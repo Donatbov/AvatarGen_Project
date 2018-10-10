@@ -1,0 +1,1357 @@
+@CHARSET "UTF-8";
+
+img{
+	border: 0px;
+}
+
+h3{
+	
+}
+
+h3.clear{
+	clear:both;
+}
+
+p{
+	font-size: 0.8em;
+	line-height: 1.6;
+}
+
+ul{
+	margin: 0;
+	padding: 0;
+}
+
+dt{
+	margin: 0;
+	padding: 0;
+}
+
+dd{
+	margin: 0;
+	padding: 0;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+tr{
+
+}
+
+th{
+	font-size: 0.85em;
+	background-color: #555;
+	color: #fff;
+	margin: 0;
+	padding : 5px 20px;
+}
+
+td{
+	margin: 0;
+	padding : 0;
+}
+
+a{
+	color: #0066aa;
+	text-decoration: none;
+}
+
+a:hover {
+	color:#0099cc;
+	text-decoration: underline;
+}
+
+a:visited {
+	color:#990099;
+	text-decoration: underline;
+}
+
+.point{
+	color: #cc0000;
+}
+
+p.back{
+	background: url("../img/back_icon.gif") no-repeat scroll 0 center transparent;
+	margin: 0 0 20px 0;
+	padding: 0 0 0 20px;
+}
+
+.small{
+	font-size: 0.7em;
+}
+
+/*  ---------------------------------------------------------- width  */
+.w960{ width: 960px; }
+.w750{ width: 750px; }
+.w700{ width: 700px; }
+.w450{ width: 450px; }
+
+/*  ---------------------------------------------------------- container  */
+#container{
+	margin: 0;
+}
+
+/*  ---------------------------------------------------------- headerArea  */
+#headerArea{
+	width: 1000px;
+	background: #F37;
+}
+
+/* *************************************************************** contents */
+div#contents{
+	position: relative;
+	width: 1000px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+
+/*  ---------------------------------------------------------- leftArea  */
+#leftArea{
+	width: 730px;
+	float: left;
+	margin: 0 0 20px;
+}
+
+#leftArea2{
+	width: 1000px;
+	margin: 0 0 20px;
+}
+
+#leftAreaSnap{
+	float: left;
+	width: 720px;
+	margin: 0 0 20px;
+}
+
+#leftArea h1 {
+border-left: 4px solid #333;
+background:none;
+clear:both;
+color:#333;
+font-size:1.2em;
+margin:0 10px 10px 0;
+padding:0px 0 0px 8px;
+}
+
+#leftArea2 h2 {
+border-left: 4px solid #333;
+background:none;
+clear:both;
+color:#333;
+font-size:1em;
+margin:0 10px 10px 0;
+padding:0px 0 0px 8px;
+}
+
+
+/*  ------------------------- action_block  */
+div.action_block {
+	width: 600px;
+	overflow: hidden;
+	border: 8px solid #aaa;
+	border-radius: 20px;
+	text-align: center;
+	margin: 20px auto 20px;
+	padding: 20px 0;
+}
+
+div.action_block p{
+	font-size: 0.8em;
+	margin: 0 10px;
+}
+
+/* -------------------------------- page_top */
+div#leftArea p.page_top{
+	text-align: right;
+	font-size: 0.8em;
+	margin: 0 0 20px;
+	padding: 0;
+}
+
+div#leftArea p.page_top a{
+	background: url(../img/page_top.gif) no-repeat scroll left center transparent;
+	margin: 0;
+	padding: 0 0 0 20px;
+}
+
+
+/* ---------------------------------------------------------- #errorArea */
+#errorArea{
+	width: 600px;
+	border: 5px solid #d33;
+	border-radius: 20px;
+	margin: 10px auto;
+	padding: 10px;
+}
+
+#errorArea ul {
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+#errorArea ul li{
+	font-size: 0.8em;
+	line-height: 1.5em;
+	color: #f00;
+}
+
+
+/*  ---------------------------------------------------------- mixArea  */
+#mixArea{
+	float: left;
+	width: 250px;
+	position : fixed!important;
+	position : absolute; 
+	margin: 0 10px 0 0;
+	padding: 0;
+}
+
+#mixArea2{
+	float: left;
+	width: 250px;
+	position: absolute;
+	margin: 0 10px 0 0;
+	padding: 0;
+}
+
+/* ---------------------------- #sexMenuBlock */
+#sexMenuBlock{
+	position:absolute;
+	margin: 0;
+	padding: 0;
+}
+
+#sexMenuBlock ul{
+	list-style: none;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+#sexMenuBlock ul li{
+	float: left;
+}
+
+#sexMenuBlock img{
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+}
+
+/* ---------------------------- #mixBlock */
+#mixBlock{
+	position: absolute;
+	top: 40px;
+	z-index:1;
+	width: 240px;
+	height: 400px;
+	background:url("/common/img/loading.gif") no-repeat scroll center center transparent;
+	background-color: #ddd;
+	border-radius: 0 0 25px 25px;
+	overflow: hidden;
+	text-align: center;
+	margin: 0 10px 0 0;
+	padding: 0;
+}
+
+#mixBlock #parts_body{
+	z-index: 2;
+	position: absolute;
+	left: 40px;
+	top: 145px;
+	width: 160px;
+}
+
+#mixBlock #fs_shoes{
+	z-index: 3;
+	position: absolute;
+	left: 40px;
+	top: 360px;
+	width: 160px;
+}
+
+#mixBlock #parts_face{
+	z-index: 10;
+	position: absolute;
+	left: 40px;
+	top: 20px;
+	width: 160px;
+}
+
+#mixBlock #parts_eye{
+	z-index: 11;
+	position: absolute;
+	left: 40px;
+	top: 90px;
+	width: 160px;
+}
+
+#mixBlock #parts_nose{
+	z-index: 11;
+	position: absolute;
+	left: 40px;
+	top: 91px;
+	width: 160px;
+}
+
+#mixBlock #parts_mouth{
+	z-index: 11;
+	position: absolute;
+	left: 40px;
+	top: 125px;
+	width: 160px;
+}
+
+#mixBlock #parts_brow{
+	z-index: 11;
+	position: absolute;
+	left: 40px;
+	top: 80px;
+	width: 160px;
+}
+
+#mixBlock #parts_hair{
+	z-index: 11;
+	position: absolute;
+	left: 40px;
+	top: -20px;
+	width: 160px;
+}
+
+#mixBlock #fs_tops{
+	z-index: 5;
+	position: absolute;
+	left: 40px;
+	top: 153px;
+	width: 160px;
+}
+
+#mixBlock #fs_outer{
+	z-index: 5;
+	position: absolute;
+	left: 40px;
+	top: 153px;
+	width: 160px;
+}
+
+#mixBlock #fs_pants{
+	z-index: 5;
+	position: absolute;
+	left: 40px;
+	top: 285px;
+	width: 160px;
+}
+
+#mixBlock #fs_skirt{
+	z-index: 5;
+	position: absolute;
+	left: 40px;
+	top: 285px;
+	width: 160px;
+}
+
+#mixBlock #fs_dress{
+	z-index: 5;
+	position: absolute;
+	left: 40px;
+	top: 153px;
+	width: 160px;
+}
+
+#mixBlock #fs_hat{
+	z-index: 12;
+	position: absolute;
+	left: 40px;
+	top: -37px;
+	width: 160px;
+}
+
+#mixBlock #fs_glasses{
+	z-index: 11;
+	position: absolute;
+	left: 40px;
+	top: 90px;
+	width: 160px;
+}
+
+#mixBlock #item_property{
+	z-index: 15;
+	position: absolute;
+	left: 20px;
+	top: 155px;
+	width: 200px;
+}
+
+#mixBlock #item_icon{
+	z-index: 15;
+	position: absolute;
+	left: 40px;
+	top: 20px;
+	width: 30px;
+}
+
+/* ---------------------------- #mixBlock_zoom */
+#mixBlock_zoom{
+	position: absolute;
+	top: 40px;
+	z-index:1;
+	width: 240px;
+	height: 400px;
+	background:url("/common/img/loading.gif") no-repeat scroll center center transparent;
+	background-color: #ddd;
+	border-radius: 0 0 25px 25px;
+	overflow: hidden;
+	text-align: center;
+	margin: 0 10px 0 0;
+	padding: 0;
+}
+
+#mixBlock_zoom #parts_body{
+	z-index: 2;
+	position: absolute;
+	left: 0px;
+	top: 242.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #parts_face{
+	z-index: 10;
+	position: absolute;
+	left: 0px;
+	top: 55px;
+	width: 240px;
+}
+
+#mixBlock_zoom #parts_eye{
+	z-index: 11;
+	position: absolute;
+	left: 0px;
+	top: 160px;
+	width: 240px;
+}
+
+#mixBlock_zoom #parts_nose{
+	z-index: 11;
+	position: absolute;
+	left: 0px;
+	top: 161.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #parts_mouth{
+	z-index: 11;
+	position: absolute;
+	left: 0px;
+	top: 212.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #parts_brow{
+	z-index: 11;
+	position: absolute;
+	left: 0px;
+	top: 145px;
+	width: 240px;
+}
+
+#mixBlock_zoom #parts_hair{
+	z-index: 11;
+	position: absolute;
+	left: 0px;
+	top: -5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #fs_tops{
+	z-index: 5;
+	position: absolute;
+	left: 0px;
+	top: 254.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #fs_outer{
+	z-index: 5;
+	position: absolute;
+	left: 0px;
+	top: 254.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #fs_pants{
+	z-index: 5;
+	position: absolute;
+	left: 0px;
+	top: 452.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #fs_skirt{
+	z-index: 5;
+	position: absolute;
+	left: 0px;
+	top: 452.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #fs_dress{
+	z-index: 5;
+	position: absolute;
+	left: 0px;
+	top: 254.5px;
+	width: 240px;
+}
+
+#mixBlock_zoom #fs_hat{
+	z-index: 12;
+	position: absolute;
+	left: 0px;
+	top: -35px;
+	width: 240px;
+}
+
+#mixBlock_zoom #fs_glasses{
+	z-index: 11;
+	position: absolute;
+	left: 0px;
+	top: 160px;
+	width: 240px;
+}
+
+#mixBlock_zoom #item_property{
+	z-index: 15;
+	position: absolute;
+	left: -20px;
+	top: 250px;
+	width: 300px;
+}
+
+#mixBlock_zoom #item_icon{
+	z-index: 15;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 45px;
+}
+
+#mixBlock p{
+	margin: 0;
+}
+
+#mixBlock2{
+	position: absolute;
+	top: 440px;
+	margin: 0 10px 0 0;
+	padding: 0;
+	width: 250px;
+}
+
+#mixBlock2 img.left{
+	float: left;
+}
+
+#mixBlock2 ul{
+	clear: both;
+	list-style: none;
+	overflow: hidden;
+	margin: 0 0 10px;
+}
+
+#mixBlock2 li{
+	float: left;
+	margin: 5px 5px 0 0;
+}
+
+#mixBlock2 li img{
+	cursor: pointer;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #ccc;
+	margin: 0 2px;
+}
+
+#mixBlock2 ul.fit_off li{
+	margin: 5px 1px 0;
+}
+
+#mixBlock2 ul.fit_off li img{
+	width: 32px;
+	height: 32px;
+	border: 0;
+	margin: 0;
+}
+
+/*  ---------------------------------------------------------- start_sexBlock  */
+#start_sexBlock{
+	background: #eee;
+	border-radius: 10px;
+	text-align: center;
+	margin: 0 0 20px;
+	padding: 10px;
+}
+
+#start_sexBlock p{
+	color: #ff3388;
+	font-size: 1.1em;
+	margin: 0;
+	padding: 0;
+}
+
+#start_sexBlock img{
+	cursor: pointer;
+}
+
+#start_sexBlock img#chara_start_this{
+	position: absolute;
+	top: -60px;
+}
+
+
+/*  ---------------------------------------------------------- selectArea  */
+div#leftArea div#selectArea{
+	float: right;
+	width: 468px;
+	margin: 0 5px 20px 0;
+}
+
+#selectArea2{
+	float: right;
+	width: 730px;
+	margin: 0 0 20px;
+}
+
+/*  --------------------------- menuSelectBlock  */
+#menuSelectBlock{
+	padding: 0 0 0 0;
+	margin: 0 0 10px;
+}
+
+#menuSelectBlock img{
+	vertical-align: bottom;
+}
+
+#menuSelectBlock ul.mainMenu{
+	overflow: hidden;
+	list-style-type:none;
+	clear: both;
+}
+
+#menuSelectBlock ul.mainMenu li{
+	float: left;
+	width: 117px;
+	background: url("/common/img_app/gmn_bg.png") repeat-x scroll 0 center transparent;
+	border-radius: 30px 30px 0 0;
+	text-align: center;
+	margin:  0;
+	padding: 2px 0;
+}
+
+#menuSelectBlock ul.mainMenu.girl li{
+	background: url("/common/img_app/gmn_bg_g.png") repeat-x scroll 0 center transparent;
+}
+
+#menuSelectBlock ul.mainMenu li:hover{
+	background: url("/common/img_app/gmn_bg_on.png") repeat-x scroll 0 center transparent;
+}
+
+#menuSelectBlock ul.mainMenu.girl li:hover{
+	background: url("/common/img_app/gmn_bg_on_g.png") repeat-x scroll 0 center transparent;
+}
+
+#menuSelectBlock ul.mainMenu li.btn_on{
+	background: url("/common/img_app/gmn_bg_on.png") repeat-x scroll 0 center transparent;
+}
+
+#menuSelectBlock ul.mainMenu.girl li.btn_on{
+	background: url("/common/img_app/gmn_bg_on_g.png") repeat-x scroll 0 center transparent;
+}
+
+#menuSelectBlock ul.mainMenu li .txt{
+	display: block;
+	font-size: 0.7em;
+	color: #fff;
+}
+
+#menuSelectBlock ul.mainMenu li.right{
+	float: right;
+}
+
+#menuSelectBlock ul.subMenu{
+	overflow: hidden;
+	background-color: #07C;
+	border-radius: 0 0 10px 10px;
+	list-style-type: none;
+	padding: 5px;
+	margin: 0px 0 20px 0;
+}
+
+#menuSelectBlock ul.subMenu.girl{
+	background-color: #f79;
+}
+
+#menuSelectBlock ul.subMenu li{
+	float: left;
+	border-radius: 5px;
+	font-size: 1em;
+	color: #fff;
+	margin: 0 2px;
+	padding: 2px 11px;
+}
+
+#menuSelectBlock ul.subMenu li .txt{
+	display: block;
+	font-size: 0.6em;
+	color: #fff;
+	text-align: center;
+}
+
+#menuSelectBlock ul.subMenu li.now{
+	background: url("/common/img_app/menubar_icon_now.png") no-repeat scroll 3px 7px transparent;
+	background-color: #aaa;
+}
+
+#menuSelectBlock ul.subMenu li:hover{
+	background-color: #ccc;
+}
+
+#menuSelectBlock ul.subMenu a{
+	color: #fff;
+}
+
+/*  ---------------------------------------------------------- selectPartsArea  */
+#selectPartsArea{
+	
+}
+
+#selectPartsArea div.men{
+	background-color: #0077cc;
+	border: 4px solid #0077cc;
+}
+
+#selectPartsArea div.girl{
+	background-color: #ffbbcc;
+	border: 4px solid #ffbbcc;
+}
+
+#selectPartsArea div.item{
+	background-color: #aa55bb;
+	border: 4px solid #aa55bb;
+}
+
+#selectPartsArea div.boxTitleBlock{
+	clear: both;
+	overflow: hidden;
+	border-radius: 20px 20px 0 0;
+	margin: 0;
+	padding: 10px 20px 5px;
+}
+
+#selectPartsArea div.boxTitleBlock h3{
+	float: left;
+	color: #fff;
+	font-size: 1.2em;
+	margin: 0;
+	padding: 0;
+}
+
+#selectPartsArea div.boxTitleBlock h3 a{
+	color: #fff;
+}
+
+#selectPartsArea div.boxTitleBlock img{
+	float: right;
+	margin: 0 0 0 20px;
+	padding: 0;
+	cursor: pointer;
+}
+
+#selectPartsArea div.selectBlock{
+	overflow: hidden;
+	background: none;
+	border-radius: 0 0 20px 20px;
+	margin: 0 0 20px 0;
+	padding: 10px 0;
+}
+
+#selectPartsArea div.selectBlock ul.colorSelectBox{
+	clear: both;
+	background-color: #eee;
+	border-radius: 10px;
+	overflow: hidden;
+	line-height: 1.6em;
+	margin: 5px 10px;
+	padding: 10px 20px 5px;
+}
+
+#selectPartsArea div.selectBlock ul.colorSelectBox li{
+	float: left;
+	margin: 0 10px 0 0;
+}
+
+#selectPartsArea div.selectBlock ul.colorSelectBox li img{
+	border: 1px solid #555;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox{
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li{
+	float: left;
+	width: 100px;
+	border-radius: 10px;
+	margin: 8px 7px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li.hair{
+	margin: 0px 7px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li.icon{
+	width: 30px;
+	margin: 4px 3px;
+	padding: 4px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li:hover{
+	background: #eee;
+	cursor: pointer
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li:active{
+	background: #ccc;
+}
+
+#selectPartsArea div.item ul.partsBox li{
+	margin: 6px 4px;
+	padding: 2px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li.left{
+	clear: both;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li img{
+	width: 100px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li img.eye{
+	width: 140px;
+	position: relative;
+	left: -20px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li img.nose{
+	width: 160px;
+	position: relative;
+	left: -30px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li img.mouth{
+	width: 160px;
+	position: relative;
+	left: -30px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li img.brow{
+	width: 140px;
+	position: relative;
+	left: -20px;
+}
+
+#selectPartsArea div.selectBlock ul.partsBox li img.icon{
+	width: 30px;
+	vertical-align: middle;
+	margin: 5px 1px;
+}
+
+/*  ---------------------------------------------------------- fashion_list  */
+ul.fashion_list{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 20px;
+}
+
+ul.fashion_list li{
+	float: left;
+	width: 100px;
+	/height: 200px;
+	padding: 0;
+	margin: 0 10px 20px;
+	float: left;
+}
+
+ul.fashion_list li.left{
+	clear: both;
+}
+
+ul.fashion_list li h3{
+	text-align: center;
+	font-size: 0.6em;
+	line-height: 1.2em;
+	border-left: 2px solid #555;
+	padding: 0;
+	margin: 0;
+}
+
+ul.fashion_list p{
+	text-align: center;
+	line-height: 0;
+	margin: 0;
+}
+
+ul.fashion_list p img{
+	width: 92px;
+	border: 4px solid #fff;
+	cursor: pointer;
+}
+
+ul.fashion_list p img:hover{
+	border: 4px solid #ccc;
+	border-radius: 10px;
+}
+
+ul.fashion_list li dl{
+	margin: 0;
+}
+
+ul.fashion_list li dl dt{
+	float: left;
+	width: 34px;
+	font-size: 0.7em;
+}
+
+ul.fashion_list li dl dd{
+	text-align: center;
+	font-size: 0.6em;
+	margin: 0;
+	padding: 0;
+}
+
+ul.fashion_list li dl dd img{
+	cursor: pointer;
+	border: 1px solid #fff;
+	border-radius: 12px;
+}
+
+ul.fashion_list li dl dd img:hover{
+	border: 1px solid #666;
+}
+
+/*  ---------------------------------------------------------- wallpaper_list  */
+ul.wallpaper_list{
+	clear:both;
+	overflow: hidden;
+	width: 700px;
+	list-style-type: none;
+	padding: 0;
+	margin: 0 30px 40px 0;
+}
+
+ul.wallpaper_list li{
+	float: left;
+	width: 60px;
+	height: 60px;
+	margin: 0 10px 20px;	
+}
+
+ul.wallpaper_list li img{
+	width: 60px;
+	border: 4px solid #fff;
+}
+
+ul.wallpaper_list li img:hover{
+	width: 60px;
+	border: 4px solid #ccc;
+}
+
+/*  ---------------------------------------------------------- detailArea  */
+#detailArea{
+	clear: both;
+}
+
+#detailArea p img{
+	float: left;
+	margin: 0 10px 10px 0;
+	cursor: pointer;
+}
+
+#detailArea .goodsInfoBlock{
+	float: left;
+	width: 350px;
+	margin: 0 0 0 10px;
+	padding: 0;
+}
+
+#detailArea .goodsInfoBlock h3{
+	border-left: 4px solid #000;
+	color: #000;
+	margin: 0 0 10px 0;
+	padding: 0 0 0 10px;
+}
+
+#detailArea .goodsInfoBlock dl{
+	overflow: hidden;
+	border-bottom: 1px solid #999;
+	margin: 0 0 10px;
+}
+
+#detailArea .goodsInfoBlock dl dt{
+	font-size: 0.8em;
+	line-height: 1.6em;
+	width: 80px;
+	border-top: 1px solid #999;
+	border-bottom: 0;
+	margin: 0;
+	padding: 5px;
+	clear: both;
+	float:left;
+}
+
+#detailArea .goodsInfoBlock dl dd{
+	font-size: 0.8em;
+	line-height: 1.6em;
+	width: 230px;
+	border-top: 1px solid #999;
+	border-bottom: 0;
+	margin: 0;
+	padding: 5px;
+	float: left;
+}
+
+#detailArea .goodsInfoBlock dl dd img{
+	margin: 0 5px 0 0;
+}
+
+#detailArea .goodsInfoBlock dl dd img.this{
+	border: 3px solid #999;
+	margin: 0 5px 0 0;
+}
+
+/*  ---------------------------------------------------------- snapshot  */
+h3.snapshot{
+	background: #F37;
+	border-radius: 20px 20px 0 0;
+	color: #fff;
+	font-size: 1em;
+	margin: 0;
+	padding: 10px 15px;
+}
+
+/*  ---------------------------------------------------------- photoBlock  */
+div#photoBlock{
+	overflow: hidden;
+	background: #fff;
+	border: 10px solid #eee;
+	border-radius: 0 0 20px 20px;
+	color: #666;
+	margin: 0 0 30px;
+	padding: 20px;
+}
+
+div#photoBlock div#nicknameBox {
+	clear: both;
+	overflow: hidden;
+	background: #eee;
+	border-radius: 10px;
+	margin: 20px 0 0;
+	padding: 20px;
+}
+
+div#photoBlock div#nicknameBox input{
+	font-size: 1.2em;
+	color: #666;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+div#photoBlock div#nicknameBox img{
+	vertical-align: bottom;
+	padding: 5px;
+}
+
+/*  ---------------------------------------------------------- summary  */
+.summary{
+	padding: 0;
+	margin: 5px 40px;
+	float: left;
+}
+
+.summary h3{
+	font-size: 0.9em;
+	border-left: 3px solid #555;
+	padding: 0 0 0 10px;
+	margin: 5px 0;
+}
+
+.summary dt{
+	font-size: 0.80em;
+	border-bottom: 1px solid #ccc;
+	width: 50px;
+	float: left;
+}
+
+.summary dd{
+	font-size: 0.80em;
+	border-bottom: 1px solid #ccc;
+	width: 120px;
+}
+
+.summary p{
+	color: #999;
+	font-size: 0.7em;
+	line-height: 1em;
+	margin: 0 0 5px;
+	padding: 0;
+}
+
+.summary_s{
+	width: 100px;
+	padding: 0;
+	margin: 0 5px 10px 0;
+	float: left;
+}
+
+.summary_s p{
+	font-size: 10px;
+}
+
+#leftArea .left{
+	clear: both;
+	float: left;
+}
+
+#leftArea h3.clear{
+	clear: both;
+	margin: 0 0 5px;
+}
+
+#leftArea .summary_two{
+	float: left;
+	width: 360px;
+	margin: 0 10px 20px 0;
+}
+
+#leftArea .summary_two h3{
+	border-left: 3px solid #555;
+	color: #555;
+	font-size: 0.9em;
+	margin: 0 0 3px;
+	padding: 0 0 0 8px;
+}
+
+#leftArea .summary_two img{
+	width: 360px;
+	border: 1px solid #ccc;
+}
+
+#leftArea .summary_two p{
+	color: #999;
+	font-size: 0.7em;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+.summary_three{
+	float: left;
+	width: 300px;
+	margin: 0 10px 20px 0;
+}
+
+.summary_three h3{
+	border-left: 3px solid #555;
+	color: #555;
+	font-size: 0.85em;
+	margin: 0 0 3px;
+	padding: 0 0 0 8px;
+}
+
+.summary_three img{
+	width: 300px;
+	border: 1px solid #ccc;
+}
+
+.summary_three p{
+	color: #999;
+	font-size: 0.7em;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+/*  ---------------------------------------------------------- form  */
+form{
+	padding: 0px;
+	margin: 0;
+}
+
+form select{
+	padding: 2px;
+	margin: 0;
+}
+
+form input{
+	padding: 2px;
+	margin: 0;
+}
+
+form input.button{
+	padding:  0 0 0 10px;
+	margin: 0;
+}
+
+/*  ---------------------------------------------------------- form.signup  */
+form.signup{
+	padding: 0px;
+	margin: 0;
+}
+
+form.signup input{
+	padding: 0;
+	margin: 0;
+}
+	
+
+
+/*  ---------------------------------------------------------- recommendArea  */
+#recommendArea{
+	padding: 10px 0 0 0;
+	clear: both;
+}
+
+/* ---------------------------------------------------------- #helpArea */
+#leftArea #helpArea{
+	padding: 10px 0 0 0;
+	margin: 0;
+}
+
+#leftArea #helpArea h2{
+	font-size: 1.0em;
+	color: #555;
+	padding: 0;
+	margin: 20px 0 5px 0;
+}
+
+#leftArea #helpArea dt{
+	font-size: 0.85em;
+	color: #0099ff;
+	padding: 0;
+	margin: 10px 0 5px 0;
+}
+
+#leftArea #helpArea dd{
+	font-size: 0.85em;
+	color: #555;
+	padding: 0;
+	margin: 0;
+}
+
+#leftArea #helpArea h2{
+	font-size: 1.0em;
+	color: #555;
+	padding: 0;
+	margin: 20px 0 5px 0;
+}
+
+/* -------------------------------------- table.border  */
+#leftArea table.border{
+
+}
+
+#leftArea table tr.border{
+	
+}
+
+#leftArea table.border th{
+	background: #aaa;
+	border: 1px solid #ccc;
+	text-align: center;
+	font-size: 0.7em;
+}
+
+#leftArea table.border td{
+	border: 1px solid #ccc;
+	padding: 5px;
+	font-size: 0.8em;
+}
+
+/* ---------------------------------------------------------- .banner_block */
+div.banner_block{
+	clear: both;
+	padding: 0;
+	margin: 30px 0;
+	text-align: center;
+}
+
+/*  ---------------------------------------------------------- rightArea  */
+#rightArea{
+	width: 260px;
+	text-align: center;
+}
+
+#rightAreaSnap{
+	width: 260px;
+	float: right;
+	margin: 0 0 20px;
+}
+
+#rightArea h3{
+	background: #F37;
+}
+
+/* ---------------------------------------------------------- #footerArea */
+#footerAreaBack{
+	background-color: #F37;
+}
+
+/* ---------------------------------------------------------- #popMixArea */
+#popMixArea{
+	width: 960px;
+	position: fixed;
+	bottom: 0;
+	background: #555;
+	border-radius: 10px 10px 0 0;
+	opacity: 0.95;
+	clear: both;
+	overflow: hidden;
+	padding: 0;
+}
+
+#popMixArea #star_close{
+	position: absolute;
+    right: 0;
+}
+
+#popMixArea h3{
+	color: #fff;
+	font-size: 0.9em;
+	padding: 0;
+	margin: 5px 0 0 10px;
+}
+
+#popMixArea ul{
+	list-style-type:none;
+	padding: 10px;
+}
+
+#popMixArea ul li{
+	float: left;
+	width: 80px;
+	padding: 0;
+	margin: 0 10px 0 0;
+}
+
+#popMixArea ul li img{
+	width: 80px;
+}
+
+#popMixArea ul li p{
+	font-size: 0.7em;
+	color: #fff;
+	padding: 0;
+	margin: 5px 0;
+}
+
