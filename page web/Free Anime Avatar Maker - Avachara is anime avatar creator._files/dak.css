@@ -1,0 +1,1154 @@
+@CHARSET "UTF-8";
+
+body{
+	font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", Verdana, Meiryo, helvetica, sans-serif;
+	margin: 0;
+}
+
+img{
+	border: 0px;
+}
+
+h3{
+	
+}
+
+h3.clear{
+	clear:both;
+}
+
+p{
+	font-size: 0.8em;
+	line-height: 1.6;
+}
+
+ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+dt{
+	margin: 0;
+	padding: 0;
+}
+
+dd{
+	margin: 0;
+	padding: 0;
+}
+
+table{
+	border-collapse: collapse;
+}
+
+tr{
+
+}
+
+th{
+	font-size: 0.85em;
+	background-color: #555;
+	color: #fff;
+	margin: 0;
+	padding : 5px 20px;
+}
+
+td{
+	margin: 0;
+	padding : 0;
+}
+
+a{
+	color: #333;
+	text-decoration: underline;
+}
+
+a:hover {
+	opacity: 0.85;
+	color:#0a0;
+	text-decoration: none;
+}
+
+.point{
+	color: #cc0000;
+}
+
+p.back{
+	background: url("../img/back_icon.gif") no-repeat scroll 0 center transparent;
+	margin: 0 0 20px 0;
+	padding: 0 0 0 20px;
+}
+
+p.center{
+	text-align: center;	
+}
+
+.f_18{
+	font-size: 18px;
+	font-weight: bold;	
+}
+
+.f_21{
+	font-size: 18px;
+	font-weight: bold;	
+}
+
+.f_24{
+	font-size: 24px;
+	font-weight: bold;	
+}
+
+.f_32{
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 1em;	
+}
+
+.f_36{
+	font-size: 36px;
+	font-weight: bold;	
+}
+
+.f_red{
+	color: #c00;
+}
+
+.f_small{
+	font-size: 0.8em;
+}
+
+.partsReload{
+	cursor: pointer;
+}
+
+.fashionReload{
+	cursor: pointer;
+}
+
+
+/* -------------------------------- table */
+table{
+	clear: both;
+	border-collapse: collapse;
+}
+
+table tr{
+
+}
+
+table tr th{
+	background: #eee;
+	border: 1px solid #ccc;
+	font-size: 0.8em;
+	color: #555;
+	font-weight: normal;
+	padding: 5px 10px;
+}
+
+table tr td{
+	border: 1px solid #ccc;
+	font-size: 0.8em;
+	padding: 5px 10px;
+}
+
+/* -------------------------------- bannerBlock */
+div.banner_block{
+	clear: both;
+	text-align: center;
+	margin: 20px 0;
+	padding: 0;
+}
+
+/* -------------------------------- signup_login_block */
+div.signup_login_block{
+	clear: both;
+	width: 900px;
+	background: #eee;
+	border-radius: 10px;
+	text-align: center;
+	margin: 20px auto;
+	padding: 15px 0;
+}
+
+div.signup_login_block img{
+	vertical-align: middle;
+	margin: 5px 20px;
+}
+
+/* ---------------------------------------------------------- #linkBlock */
+#likeBlock {
+    clear: both;
+    border-radius: 10px;
+    background: #eee;
+    overflow: hidden;
+    margin: 0 0 10px;
+  	padding: 10px 10px 0 10px;
+}
+
+#likeBlock ul {
+    
+}
+
+#likeBlock ul li {
+    float: left;
+    margin: 2px 3px;
+}
+
+#likeBlock ul li div.fb-like {
+    line-height: 1em;
+}
+
+#likeBlock p{
+    float: left;
+    font-size: 0.8em;
+    color: #666;
+    margin: 0 10px;
+}
+
+/*  ---------------------------------------------------------- container  */
+#container{
+	margin: 0;
+}
+
+/*  ---------------------------------------------------------- headerArea  */
+#headerArea{
+	width:960px;
+	background: #222;
+	border-radius: 0 0 10px 10px;
+	overflow: hidden;
+	margin: 0 auto 5px;
+	padding: 3px 0;
+}
+
+#headerArea #logoBlock{
+	background-position: 0px 0px;
+	margin:0 5px 3px 10px;
+	padding: 0;
+	width:300px;
+	float: left;
+}
+
+#headerArea #logoBlock img{
+	vertical-align: bottom;
+}
+
+#headerArea #menuBlock{
+	float: right;
+	margin: 3px 20px 0 0;
+}
+
+#headerArea h1{
+	font-size: 0.60em;
+	font-weight: normal;
+	color: #999;
+	float: right;
+	margin: 5px 0 5px 0;
+}
+
+#headerArea #menuBlock ul{
+	list-style-type:none;
+	clear: both;
+}
+
+#headerArea #menuBlock li{
+	height: 24px;
+	line-height: 24px;
+	font-size: 0.8em;
+	margin:  0 0 0 15px;
+	padding: 0px 0px 0 20px;
+	float: right;
+}
+
+#headerArea #menuBlock li.list_img{
+	height: 24px;
+	line-height: 24px;
+	margin:  0 0 0 5px;
+	padding: 0px 0px 0 5px;
+	float: right;
+}
+
+#headerArea #menuBlock li img{
+	margin: 0 5px 0 0;
+	vertical-align: middle;
+}
+
+#headerArea #menuBlock li img.thum{
+	width: 25px;
+}
+
+#headerArea #menuBlock a, #headerArea #menuBlock a:link, #headerArea #menuBlock  a:visited {
+	color: #eee;
+	display:block;
+	text-align:center;
+	text-decoration:none;
+}
+
+#headerArea  a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+/*  ---------------------------------------------------------- h1#system_description  */
+h1#system_description{
+	width: 960px;
+	font-size: 0.7em;
+	color: #999;
+	font-weight: normal;
+	text-align: right;
+	margin: 0 auto 5px;
+}
+
+/*  ---------------------------------------------------------- start_sexBlock  */
+#startSelectBlock{
+	background: #fcc;
+	border: 5px solid #c66;
+	border-radius: 10px;
+	text-align: center;
+	margin: 0 50px 20px;
+	padding: 10px 0;
+}
+
+#startSelectBlock p{
+	color: #ff3388;
+	font-size: 1.1em;
+	margin: 0;
+	padding: 0;
+}
+
+#startSelectBlock img{
+	cursor: pointer;
+	vertical-align: middle;
+	margin: 0 10px;
+}
+
+/* *************************************************************** contents */
+div#contents{
+	position: relative;
+	width: 960px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+/* ********************************************************** contentsMenuArea */
+div#contentsMenuArea{
+	clear: both;
+	width: 960px;
+	margin: 10px auto;
+	padding: 0;
+}
+
+div#contentsMenuArea ul{
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+div#contentsMenuArea ul li{
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+/* ********************************************************** ul.avatar_here_now_block960 */
+ul.avatar_here_now_block960{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	background: url("/common/img_app/bg_opacity30.png") repeat scroll 0 center transparent;
+	border-radius: 10px;
+	margin: 0;
+	padding: 0 20px;
+}
+
+ul.avatar_here_now_block960 li{
+	position: relative;
+	float: left;
+	width: 90px;
+	margin: 2px;
+}
+
+ul.avatar_here_now_block960 li img.avatar{
+	width: 100px;
+}
+
+ul.avatar_here_now_block960 li p.nickname{
+	position: absolute;
+	top: 130px;
+	background: url("/common/img_app/bg_opacity50.png") repeat scroll 0 center transparent;
+	overflow: hidden;
+	border-radius: 5px;
+	text-align: center;
+	color: #fff;
+	margin: 2px;
+	padding: 2px;
+}
+
+ul.avatar_here_now_block960 li p.info_box{
+	position: absolute;
+	top: 160px;
+	color: #000;
+	font-size: 0.6em;
+	margin: 2px;
+}
+
+/* ********************************************************** ul.avatar_list_now_block960 */
+ul.avatar_list_now_block960{
+	clear: both;
+	position: relative;
+	height: 200px;
+	overflow: hidden;
+	margin: 0;
+	padding: 50px 20px 0;
+}
+
+ul.avatar_list_now_block960 li{
+	position: relative;
+	float: left;
+	width: 90px;
+	height: 200px;
+	margin: 2px;
+}
+
+ul.avatar_list_now_block960 li img.avatar{
+	width: 100px;
+	position: relative;
+}
+
+ul.avatar_list_now_block960 li p.nickname{
+	position: absolute;
+	top: 130px;
+	width: 82px;
+	background: url("/common/img_app/bg_opacity30.png") repeat scroll 0 center transparent;
+	overflow: hidden;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 1em;
+	color: #fff;
+	margin: 2px;
+	padding: 2px;
+}
+
+ul.avatar_list_now_block960 li p.nickname span.small{
+	font-size: 0.6em;
+	color: #ddd;
+}
+
+ul.avatar_list_now_block960 li p.info_box{
+	position: absolute;
+	top: 160px;
+	color: #000;
+	font-size: 0.6em;
+	margin: 2px;
+}
+
+ul.avatar_list_now_block960 li p.tweet_box{
+	position: absolute;
+	top: 100px;
+	width: 150px;
+	left: -25px;
+	color: #000;
+	background: #fff;
+	border-radius: 5px;
+	font-size: 0.6em;
+	text-align: center;
+	margin: 0;
+	padding: 2px;
+}
+
+/* ********************************************************** buyPortraitBlock */
+div.buyPortraitBlock{
+	position: relative;
+	clear: both;
+	background: #eee;
+	border: 8px solid #aaa;
+	border-radius: 0 0 20px 20px;
+	text-align: center;
+	margin: 0 0 10px;
+	padding: 10px 5px;
+}
+
+div.buyPortraitBlock img.avatar{
+	position: absolute;
+	top: -60px;
+	left: -60px;
+	width: 120px;
+	border: 8px solid #ccc;
+	border-radius: 70px;
+}
+
+div.buyPortraitBlock ul{
+	overflow: hidden;
+}
+
+div.buyPortraitBlock ul li{
+	float: left;
+	width: 230px;
+	margin: 5px 3px;
+}
+
+div.buyPortraitBlock p.btnBox{
+	position: relative;
+}
+
+div.buyPortraitBlock p.btnBox{
+	position: relative;
+}
+
+div.buyPortraitBlock div.infoBox{
+	background: #f9f9f9;
+	border-radius: 10px;
+	margin: 10px;
+	padding: 5px 10px;
+}
+
+div.buyPortraitBlock div.infoBox h4{
+	font-size: 1em;
+	margin: 5px 0;
+	padding: 0;
+}
+
+div.buyPortraitBlock div.infoBox p{
+	margin: 5px 0;
+	padding: 0;
+}
+
+/*  ---------------------------------------------------------- mainArea  */
+#mainArea{
+	
+}
+
+#mainArea div.messageBlock{
+	border: 10px solid #ccc;
+	border-radius: 20px;
+	margin: 100px;
+	padding: 20px;
+}
+
+/*  ---------------------------------------------------------- leftArea  */
+#leftArea{
+	width: 730px;
+	float: left;
+	margin: 0 10px 20px 0;
+}
+
+#leftArea h4 span.h4_link{
+	float: right;
+	font-size: 0.8em;
+	font-weight:normal;
+}
+
+/* ---------------------------------------------------------- form_block */
+/*div#leftArea dl.form_block{
+	overflow: hidden;
+	margin: 0 0 20px;
+}
+
+div#leftArea dl.form_block dt{
+	clear: both;
+	float: left;
+	width:160px;
+	border-top: 1px solid #ccc;
+	font-size: 0.85em;
+	font-weight: bold;
+	margin: 0;
+	padding: 10px;
+}
+
+div#leftArea dl.form_block dd{
+	float: left;
+	width:520px;
+	border-top: 1px solid #ccc;
+	font-size: 0.85em;
+	margin: 0;
+	padding: 10px;
+}
+
+div#leftArea dl.form_block dd.error{
+	background: #ffcccc;
+}
+
+div#leftArea dl.form_block dd.btn{
+	clear: both;
+	width:720px;
+	background: #ccc;
+	border-top: 1px solid #ccc;
+	font-size: 0.85em;
+	text-align: center;
+	margin: 0;
+	padding: 10px;
+}
+
+div#leftArea dl.form_block dd input{
+	margin: 0 5px 5px;
+}
+
+div#leftArea dl.form_block dd textarea{
+	margin: 0 5px 5px;
+}
+
+div#leftArea dl.form_block dd select{
+	margin: 0 5px 5px;
+}
+
+div#leftArea dl.form_block dd input.radio{
+	margin: 0 5px 0 40px;
+}
+
+div#leftArea dl.form_block dd li{
+	float: left;
+	width: 72px;
+	margin: 0 6px 5px 0;
+}
+
+div#leftArea dl.form_block dd li.left{
+	clear: both;
+	float: left;
+	margin: 0 30px 0 0;
+}
+
+div#leftArea dl.form_block dd li img{
+	width: 72px;
+}
+
+div#leftArea dl.form_block dd ul.checkbox150 li{
+	float: left;
+	width: 130px;
+	font-size: 0.8em;
+	margin: 0 0 5px;
+}
+
+div#leftArea dl.form_block dd .notes{
+	font-size: 0.8em;
+	color: #999;
+}
+
+div#leftArea dl.form_block .text_red {
+	color:red;
+	font-size:0.85em;
+	font-weight:normal;
+}*/
+
+/*  ---------------------------------------------------------- formBlock  */
+div#formBlock{
+	overflow: hidden;
+	background: #fff;
+	border: 10px solid #eee;
+	border-radius: 20px;
+	color: #666;
+	margin: 0 0 30px;
+	padding: 20px;
+}
+
+div#formBlock h2{
+	margin: 0 0 20px;
+}
+
+div#formBlock dl.form_block{
+	overflow: hidden;
+	border-bottom: 1px solid #ccc;
+	margin: 0 0 10px;
+}
+
+div#formBlock dl.form_block dt{
+	clear: both;
+	float: left;
+	width:160px;
+	border-top: 1px solid #ccc;
+	font-size: 0.85em;
+	font-weight: bold;
+	margin: 0;
+	padding: 10px;
+}
+
+div#formBlock dl.form_block dd{
+	float: left;
+	width:470px;
+	border-top: 1px solid #ccc;
+	font-size: 0.85em;
+	margin: 0;
+	padding: 10px;
+}
+
+div#formBlock dl.form_block dd li{
+	float: left;
+	width: 72px;
+	margin: 0 6px 5px 0;
+}
+
+div#formBlock dl.form_block dd li img{
+	width: 72px;
+}
+
+div#formBlock dl.form_block dd input{
+	border: 1px solid #999;
+	font-size: 1.2em;
+}
+
+div#formBlock div.btn {
+	clear: both;
+	width: 90%;
+	background: #ccc;
+	border-radius: 10px;
+	text-align: center;
+	margin: 0 auto;
+	padding: 10px 0;
+}
+
+
+/*  ---------------------------------------------------------- rightArea  */
+#rightArea{
+	width: 220px;
+	float: right;
+	margin: 0 0 20px;
+}
+
+#rightArea h3{
+	background: #666;
+	font-size: 0.9em;
+	font-weight: 500;
+	color: #fff;
+	margin: 0 0 5px;
+	padding: 5px 0 5px 10px;
+}
+
+#rightArea ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#rightArea li{
+	font-size:0.80em;
+	border-top:1px dotted #CCC;
+	margin: 5px;
+	padding: 5px;
+	clear: both;
+}
+
+#rightArea div.infoBox{
+	background: #eee;
+	border: 1px solid #999;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 0;
+	margin: 0 0 10px 0;
+}
+
+#rightArea div.infoBox h3{
+	background: #666;
+	padding: 5px 10px;
+	margin: 0 0 5px 0;
+}
+
+#rightArea div.infoBox p{
+	color: #555;
+	font-size: 0.75em;
+	padding: 5px 10px 10px 10px;
+	margin: 0;
+}
+
+#rightArea div.infoBox img{
+	border: 1px solid #bbb;
+}
+
+#rightArea div.infoBox ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#rightArea div.infoBox li{
+	border-top:1px dotted #CCC;
+	margin: 5px;
+	padding: 5px;
+	clear: both;
+}
+
+#rightArea div.infoBox dl{
+	padding: 10px 0;
+	margin: 0;
+	clear: both;
+}
+
+#rightArea div.infoBox dt{
+	font-size: 0.75em;
+	padding: 0;
+	margin: 0 0 3px 5px;
+}
+
+#rightArea div.infoBox dd{
+	color: #555;
+	font-size: 0.70em;
+	padding: 0 0 5px 15px;
+	margin: 0;
+}
+
+#rightArea div.infoBox form{
+	text-align: center;
+	padding: 10px;
+	margin: 0;
+	clear: both;
+}
+
+#rightArea #feedbackBox{
+	background: url(../img/rightarea_bg200.gif) no-repeat scroll left bottom transparent;
+	border-color: #eee;
+	padding: 5px;
+	margin: 0 0 20px 0;
+	width: 200px;
+}
+
+#rightArea #feedbackBox p{
+	font-size: 10px;
+	line-height: 1.4em;
+	padding: 5px 10px 5px 5px;
+}
+
+#rightArea #feedbackBox textarea{
+	font-size: 12px;
+	margin: 5px;
+}
+
+#rightArea p{
+	font-size: 0.80em;
+	padding: 5px;
+	margin: 0;
+}
+
+#rightArea p.right{
+	text-align: right;
+	padding: 0;
+	margin: 0 0 15px 0;
+}
+
+#rightArea ol{
+	font-size: 0.80em;
+	padding: 5px 5px 5px 25px;
+	margin: 0;
+}
+
+/* -------------------------------- bg_block */
+div#rightArea div.bg_block{
+	background: #eee;
+	border-radius: 10px;
+	border: 1px solid #bbb;
+	margin: 0 0 20px;
+	padding: 0 0 10px;
+	zoom:1; //IE
+}
+
+div#rightArea div.bg_block h3{
+	background: #333;
+	border-radius: 10px 10px 0 0;
+	border: none;
+	color: #fff;
+	font-size: 0.85em;
+	margin: 0 0 5px;
+	padding: 10px 10px;
+}
+
+div#rightArea div.bg_block p{
+	font-size: 0.75em;
+	margin: 0 0 5px;
+	padding: 0 10px;
+}
+
+div#rightArea div.bg_block a.btn200{
+	background: url("../img/btn200_bg.png") repeat scroll 0 0 transparent;
+	border-radius: 10px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 1em;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 10px 5px;
+    padding: 0;
+    text-align: center;
+    width: 200px;
+}
+
+div#rightArea div.bg_block a.btn200:hover{
+    background-position: 0 -50px;
+    color: #FFFFFF;
+}
+
+/* ********************************************************** ul#tweetBlock  */
+#tweetArea p.tweet_info_block {
+	background: #ddd;
+	border-radius: 10px;
+	text-align: center;
+	color: #fff;
+    margin: 0 0 10px 0;
+    padding: 5px 0;
+}
+
+#tweetArea ul#tweetBlock {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+#tweetArea ul#tweetBlock li {
+	float: left;
+	width: 310px;
+	overflow: hidden;
+    margin: 5px;
+    padding: 5px 0;
+}
+
+#tweetArea ul#tweetBlock li.left {
+	clear: both;
+	float: left;
+}
+
+#tweetArea ul#tweetBlock li div.avatar_box {
+	float: left;
+	width: 60px;
+    margin: 0;
+}
+
+#tweetArea ul#tweetBlock li div.avatar_box img.avatar {
+	width: 60px;
+	cursor: pointer;
+}
+
+#tweetArea ul#tweetBlock li div.avatar_box img.avatar:hover {
+	width: 56px;
+	border: 2px solid #999;
+}
+
+
+#tweetArea ul#tweetBlock li div.avatar_box p.nickname {
+	text-align: center;
+	font-size: 0.65em;
+	line-height: 1em;
+	margin: 0;
+	padding: 0;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box {
+	float: right;
+	width: 235px;
+	background: url("/common/img/ic_tweet_bg.png") no-repeat scroll 0 15px transparent;
+    padding: 0 0 0 5px;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box p.tweet{
+	background: #fff;
+	border: 3px solid #ccc;
+	border-radius: 10px;
+	overflow: hidden;
+	font-size: 0.9em;
+	word-wrap: break-word;
+	margin: 0;
+	padding: 5px;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box p.men{
+	border: 3px solid #ddd;
+	color: #0088dd;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box p.men a{
+	color: #0088dd;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box p.girl{
+	border: 3px solid #ddd;
+	color: #ff3399;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box p.girl a{
+	color: #ff3399;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box p img.tw_photo{
+	float: left;
+	margin: 0 5px 0 0;
+}
+
+#tweetArea ul#tweetBlock li div.tweet_box p.info_box {
+	font-size: 0.6em;
+	color: #999;
+	text-align: right;
+	margin: 0 0 5px;
+	padding: 0;
+}
+
+/* ---------------------------------------------------------- #contactArea */
+div#contactArea{
+	clear: both;
+	border: 4px solid #ccc;
+	border-radius: 10px;
+	background: #eee;
+	text-align: center;
+	margin: 20px 0;
+	padding: 20px;
+}
+
+div#contactArea img{
+	margin: 0 10px;
+	padding: 0;
+}
+
+/* ---------------------------------------------------------- #errorArea */
+#errorArea{
+	border: 5px solid #d33;
+	border-radius: 20px;
+	margin: 20px 50px;
+	padding: 15px;
+}
+
+#errorArea ul {
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+#errorArea ul li{
+	font-size: 0.8em;
+	line-height: 1.5em;
+	color: #f00;
+}
+
+.error_text{
+	color: #c00;		
+}
+
+/* ---------------------------------------------------------- #helpArea */
+#leftArea #helpArea{
+	padding: 10px 0 0 0;
+	margin: 0;
+}
+
+#leftArea #helpArea h2{
+	font-size: 1.0em;
+	color: #555;
+	padding: 0;
+	margin: 20px 0 5px 0;
+}
+
+#leftArea #helpArea dt{
+	font-size: 0.85em;
+	color: #0099ff;
+	padding: 0;
+	margin: 10px 0 5px 0;
+}
+
+#leftArea #helpArea dd{
+	font-size: 0.85em;
+	color: #555;
+	padding: 0;
+	margin: 0;
+}
+
+#leftArea #helpArea h2{
+	font-size: 1.0em;
+	color: #555;
+	padding: 0;
+	margin: 20px 0 5px 0;
+}
+
+/* ---------------------------------------------------------- #footerMenuArea */
+div#footerMenuArea{
+	width: 960px;
+	border-bottom: 1px dashed #999;
+	background: none;
+	overflow: hidden;
+	margin: 0 auto 10px;
+	padding: 0 0 10px;
+}
+
+div#footerMenuArea h4{
+	border-left: 3px solid #666;
+	font-size: 1em;
+	color: #666;
+	margin: 0 0 10px;
+	padding: 0 0 0 5px;
+}
+
+div#footerMenuArea ul.menu_block{
+	
+}
+
+div#footerMenuArea ul.menu_block li{
+	float: left;
+	width: 220px;
+	margin: 0 10px;
+}
+
+div#footerMenuArea ul.menu_block li img{
+	width: 100%;
+}
+
+div#footerMenuArea ul.menu_block li p{
+	font-size: 0.8em;
+	color: #666;
+	margin: 0;
+}
+
+
+/* ---------------------------------------------------------- #footerArea */
+#footerAreaBack{
+	background-color: #222;
+	clear: both;
+	overflow: hidden;
+}
+
+#footerArea{
+	width: 960px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding: 10px 0 0 0;
+}
+
+#footerArea ul{
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+	clear: both;
+}
+
+#footerArea li{
+	width: 135px;
+	border-right: 1px solid #eee;
+	text-align:center;
+	float: left;
+}
+
+#footerArea li.last{
+	border-right: none;
+}
+
+#footerArea  a, #footerArea  a:link, #footerArea  a:visited {
+	font-size: 0.80em;
+	color:#eee;
+	display:block;
+	padding:2px 0;
+	text-decoration:none;
+	width:135px;
+}
+
+#footerArea  a:hover {
+	color:#fff;
+	text-decoration: underline;	
+}
+
+#copyrightBlock{
+	clear: both;
+	color: #fff;
+	font-size: 0.7em;
+	text-align: right;
+	margin: 0 10px 40px 0;
+	padding: 10px 5px 10px 0;
+}
+
+img#page_to_top{
+	position: fixed;
+	bottom: 0;
+	right: 20px;
+}

@@ -1,0 +1,39 @@
+/* copyright designalikie */
+
+$(function(){
+	$(".partsReload").live("click",function () { //ツイートリストを更新
+		var parts_type_val = $(this).data("type");
+		var color_val = $(this).data("color");
+		$("#partsReloadArea").load("./parts_type.php",{type:parts_type_val,color:color_val}); //パーツ用
+		$("#menuSelectBlock").load("./menu_face.php",{type:parts_type_val}); //パーツ用
+	});
+	
+	$(".partsReload").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".partsReload").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+})
+
+$(function(){
+	$(".fashionReload").live("click",function () { //ツイートリストを更新
+		var fs_cat_val = $(this).data("cat");
+		$("#fashionReloadArea").load("./fashion_list.php",{cat:fs_cat_val}); //パーツ用
+		$("#menuSelectBlock").load("./menu_fashion.php",{cat:fs_cat_val}); //パーツ用
+	});
+	
+	$(".partsReload").live('touchstart',function(){
+		$(this).css("background-color","#EEEEEE");
+	});
+	$(".partsReload").live('touchend',function(){
+		$(this).css("background-color","");
+	});
+})
+
+$('a.disable').live('click',function(e){
+	if($.cookie("browser") != "ie7"){
+		//リンククリックイベントを無効にする
+		e.preventDefault();
+	}
+});
