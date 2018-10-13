@@ -33,7 +33,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="btnClick"
-                android:text="Button" />
+                android:text="Importer photo" />
+
+            <Button
+                android:id="@+id/btnProcess"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="BtnProcessClick"
+                android:text="Process"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
