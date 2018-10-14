@@ -54,7 +54,6 @@ public class Landmark_struct {
     }
 
     //accesseurs
-
     public int getNoseBase_x() {
         return noseBase_x;
     }
