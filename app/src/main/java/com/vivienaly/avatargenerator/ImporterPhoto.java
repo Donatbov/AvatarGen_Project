@@ -9,6 +9,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -22,8 +26,6 @@ import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.gms.vision.face.Landmark;
 
-import static java.lang.StrictMath.abs;
-
 public class ImporterPhoto extends AppCompatActivity {
     private static final int SELECTED_PIC = 1;
 
@@ -35,6 +37,7 @@ public class ImporterPhoto extends AppCompatActivity {
     Bitmap myBitmap;
     Bitmap tempBitmap;
     Landmark_struct my_ls;
+    private int STORAGE_PERMISSION_CODE = 1;
 
 
     @Override
@@ -51,9 +54,59 @@ public class ImporterPhoto extends AppCompatActivity {
     }
 
     public void btnClick(View v) {
-        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, SELECTED_PIC);
+        if (ContextCompat.checkSelfPermission(ImporterPhoto.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(ImporterPhoto.this, "You have already granted this permission!",
+                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
+        } else {
+            requestStoragePermission();
+            Toast.makeText(ImporterPhoto.this, "You have already granted this permission!",
+                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
+        }
 
+    }
+
+    private void requestStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed because of this and that")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(ImporterPhoto.this,
+                                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == STORAGE_PERMISSION_CODE)  {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void BtnProcessClick(View v){
@@ -66,8 +119,6 @@ public class ImporterPhoto extends AppCompatActivity {
         tempBitmap = Bitmap.createBitmap(myBitmap.getWidth(), myBitmap.getHeight(), Bitmap.Config.RGB_565);
         canvas = new Canvas(tempBitmap);
         canvas.drawBitmap(myBitmap,0,0,null);
-
-        btnProcess.setActivated(false);
 
 
         FaceDetector faceDetector = new FaceDetector.Builder(getApplicationContext())
@@ -254,7 +305,6 @@ public class ImporterPhoto extends AppCompatActivity {
         canvas.drawBitmap(noseBitmap, ls.getNoseBase_x() - (noseScaledWidth/2), ls.getNoseBase_y() - (noseScaledHeight/2), null);
     }
 
-//abs(ls.getLeftMouth_y()-ls.getBottomMouth_y())/2
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
