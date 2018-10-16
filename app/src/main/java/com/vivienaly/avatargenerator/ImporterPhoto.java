@@ -286,7 +286,6 @@ public class ImporterPhoto extends AppCompatActivity {
             Toast.makeText(this,"RIGHT_EAR_TIP property is empty", Toast.LENGTH_SHORT).show();
         }
 
-
         int scaledWidth = eyeBitmap.getScaledWidth(canvas);
         int scaledHeight = eyeBitmap.getScaledHeight(canvas);
         //canvas.drawBitmap(eyeBitmap,cx - (scaledWidth/2), cy - (scaledHeight), null);
