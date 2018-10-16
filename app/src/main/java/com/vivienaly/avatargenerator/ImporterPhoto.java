@@ -33,12 +33,14 @@ public class ImporterPhoto extends AppCompatActivity {
     Bitmap eyeBitmap;
     Bitmap myBitmap;
     Bitmap tempBitmap;
+    Landmark_struct my_ls;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import_photo);
+        my_ls = new Landmark_struct();
 
         importer = findViewById(R.id.importer_photo);
         btnProcess = findViewById(R.id.btnProcess);
@@ -74,7 +76,8 @@ public class ImporterPhoto extends AppCompatActivity {
             SparseArray<Face> sparseArray = faceDetector.detect(frame);
             for (int i = 0; i<sparseArray.size(); i++){
                 Face face = sparseArray.valueAt(i);
-                detectLandMarks(face);
+                my_ls = detectLandMarks(face);
+                drawLandmarks(my_ls);
             }
 
             import_view.setImageBitmap(tempBitmap);
@@ -83,63 +86,64 @@ public class ImporterPhoto extends AppCompatActivity {
 
     }
 
-    private void detectLandMarks(Face face) {
-        Landmark_struct my_ls = new Landmark_struct();
-        for (Landmark landmark:face.getLandmarks()){
+    private Landmark_struct detectLandMarks(Face face) {
+
+        Landmark_struct ls = new Landmark_struct();
+        for (Landmark landmark:face.getLandmarks()) {
             int type = landmark.getType();
 
             switch (type) {
                 case Landmark.NOSE_BASE:
-                    my_ls.setNoseBase_x((int)landmark.getPosition().x);
-                    my_ls.setNoseBase_y((int)landmark.getPosition().y);
+                    ls.setNoseBase_x((int) landmark.getPosition().x);
+                    ls.setNoseBase_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.BOTTOM_MOUTH:
-                    my_ls.setBottomMouth_x((int)landmark.getPosition().x);
-                    my_ls.setBottomMouth_y((int)landmark.getPosition().y);
+                    ls.setBottomMouth_x((int) landmark.getPosition().x);
+                    ls.setBottomMouth_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.LEFT_CHEEK:
-                    my_ls.setLeftCheek_x((int)landmark.getPosition().x);
-                    my_ls.setLeftCheek_y((int)landmark.getPosition().y);
+                    ls.setLeftCheek_x((int) landmark.getPosition().x);
+                    ls.setLeftCheek_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.RIGHT_CHEEK:
-                    my_ls.setRightCheek_x((int)landmark.getPosition().x);
-                    my_ls.setRightCheek_y((int)landmark.getPosition().y);
+                    ls.setRightCheek_x((int) landmark.getPosition().x);
+                    ls.setRightCheek_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.LEFT_EAR:
-                    my_ls.setRightCheek_x((int)landmark.getPosition().x);
-                    my_ls.setRightCheek_y((int)landmark.getPosition().y);
+                    ls.setRightCheek_x((int) landmark.getPosition().x);
+                    ls.setRightCheek_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.RIGHT_EAR:
-                    my_ls.setRigthEar_x((int)landmark.getPosition().x);
-                    my_ls.setRigthEar_y((int)landmark.getPosition().y);
+                    ls.setRigthEar_x((int) landmark.getPosition().x);
+                    ls.setRigthEar_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.LEFT_EAR_TIP:
-                    my_ls.setLeftEarTip_x((int)landmark.getPosition().x);
-                    my_ls.setLeftEarTip_y((int)landmark.getPosition().y);
+                    ls.setLeftEarTip_x((int) landmark.getPosition().x);
+                    ls.setLeftEarTip_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.RIGHT_EAR_TIP:
-                    my_ls.setRigthEar_x((int)landmark.getPosition().x);
-                    my_ls.setLeftEar_y((int)landmark.getPosition().y);
+                    ls.setRigthEar_x((int) landmark.getPosition().x);
+                    ls.setLeftEar_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.LEFT_EYE:
-                    my_ls.setLeftEye_x((int)landmark.getPosition().x);
-                    my_ls.setLeftEye_y((int)landmark.getPosition().y);
+                    ls.setLeftEye_x((int) landmark.getPosition().x);
+                    ls.setLeftEye_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.RIGHT_EYE:
-                    my_ls.setRigthEye_x((int)landmark.getPosition().x);
-                    my_ls.setRigthEye_y((int)landmark.getPosition().y);
+                    ls.setRigthEye_x((int) landmark.getPosition().x);
+                    ls.setRigthEye_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.LEFT_MOUTH:
-                    my_ls.setLeftMouth_x((int)landmark.getPosition().x);
-                    my_ls.setLeftMouth_y((int)landmark.getPosition().y);
+                    ls.setLeftMouth_x((int) landmark.getPosition().x);
+                    ls.setLeftMouth_y((int) landmark.getPosition().y);
                     break;
                 case Landmark.RIGHT_MOUTH:
-                    my_ls.setRightMouth_x((int)landmark.getPosition().x);
-                    my_ls.setRightMouth_y((int)landmark.getPosition().y);
+                    ls.setRightMouth_x((int) landmark.getPosition().x);
+                    ls.setRightMouth_y((int) landmark.getPosition().y);
                     break;
             }
         }
-        drawLandmarks(my_ls);
+        return ls;
     }
 
     private void drawLandmarks(Landmark_struct ls) {
