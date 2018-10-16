@@ -22,6 +22,8 @@ import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.gms.vision.face.Landmark;
 
+import static java.lang.StrictMath.abs;
+
 public class ImporterPhoto extends AppCompatActivity {
     private static final int SELECTED_PIC = 1;
 
@@ -30,7 +32,6 @@ public class ImporterPhoto extends AppCompatActivity {
     ImageView import_view;
     String ImageDecode;
     Canvas canvas;
-    Bitmap eyeBitmap;
     Bitmap myBitmap;
     Bitmap tempBitmap;
     Landmark_struct my_ls;
@@ -46,15 +47,7 @@ public class ImporterPhoto extends AppCompatActivity {
         btnProcess = findViewById(R.id.btnProcess);
         import_view = findViewById(R.id.import_view);
 
-        myBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.face_example);
-        eyeBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.eye_0);
-        import_view.setImageBitmap(myBitmap);
 
-        tempBitmap = Bitmap.createBitmap(myBitmap.getWidth(), myBitmap.getHeight(), Bitmap.Config.RGB_565);
-        canvas = new Canvas(tempBitmap);
-        canvas.drawBitmap(myBitmap,0,0,null);
-
-        btnProcess.setActivated(false);
     }
 
     public void btnClick(View v) {
@@ -64,6 +57,19 @@ public class ImporterPhoto extends AppCompatActivity {
     }
 
     public void BtnProcessClick(View v){
+        import_view.setImageBitmap(BitmapFactory
+                .decodeFile(ImageDecode));
+        //myBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.face_example);
+        myBitmap = BitmapFactory.decodeFile(ImageDecode);
+        import_view.setImageBitmap(myBitmap);
+
+        tempBitmap = Bitmap.createBitmap(myBitmap.getWidth(), myBitmap.getHeight(), Bitmap.Config.RGB_565);
+        canvas = new Canvas(tempBitmap);
+        canvas.drawBitmap(myBitmap,0,0,null);
+
+        btnProcess.setActivated(false);
+
+
         FaceDetector faceDetector = new FaceDetector.Builder(getApplicationContext())
                 .setTrackingEnabled(false)
                 .setLandmarkType(FaceDetector.ALL_LANDMARKS)
@@ -78,6 +84,7 @@ public class ImporterPhoto extends AppCompatActivity {
                 Face face = sparseArray.valueAt(i);
                 my_ls = detectLandMarks(face);
                 drawLandmarks(my_ls);
+                drawElementsOnFace(my_ls);
             }
 
             import_view.setImageBitmap(tempBitmap);
@@ -228,13 +235,26 @@ public class ImporterPhoto extends AppCompatActivity {
             Toast.makeText(this,"RIGHT_EAR_TIP property is empty", Toast.LENGTH_SHORT).show();
         }
 
-
-        int scaledWidth = eyeBitmap.getScaledWidth(canvas);
-        int scaledHeight = eyeBitmap.getScaledHeight(canvas);
-        //canvas.drawBitmap(eyeBitmap,cx - (scaledWidth/2), cy - (scaledHeight), null);
     }
 
+    private void drawElementsOnFace(Landmark_struct ls) {
+        Bitmap eyeBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.eye_0);
+        int eyeScaledWidth = eyeBitmap.getScaledWidth(canvas);
+        int eyesScaledHeight = eyeBitmap.getScaledHeight(canvas);
+        Bitmap mouthBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.mouth_1);
+        int mouthScaledWidth = mouthBitmap.getScaledWidth(canvas);
+        int mouthScaledHeight = mouthBitmap.getScaledHeight(canvas);
+        Bitmap noseBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.nose_4);
+        int noseScaledWidth = noseBitmap.getScaledWidth(canvas);
+        int noseScaledHeight = noseBitmap.getScaledHeight(canvas);
 
+
+        canvas.drawBitmap(eyeBitmap, ls.getNoseBase_x() - (eyeScaledWidth/2), ls.getLeftEye_y() - (eyesScaledHeight/2), null);
+        canvas.drawBitmap(mouthBitmap, ls.getBottomMouth_x() - (mouthScaledWidth/2), ls.getLeftMouth_y() - mouthScaledHeight/2, null);
+        canvas.drawBitmap(noseBitmap, ls.getNoseBase_x() - (noseScaledWidth/2), ls.getNoseBase_y() - (noseScaledHeight/2), null);
+    }
+
+//abs(ls.getLeftMouth_y()-ls.getBottomMouth_y())/2
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
