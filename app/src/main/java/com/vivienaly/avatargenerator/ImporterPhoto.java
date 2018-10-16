@@ -1,6 +1,9 @@
 package com.vivienaly.avatargenerator;
 
+import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +12,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -34,6 +41,7 @@ public class ImporterPhoto extends AppCompatActivity {
     Bitmap myBitmap;
     Bitmap tempBitmap;
     Landmark_struct my_ls;
+    private int STORAGE_PERMISSION_CODE = 1;
 
 
     @Override
@@ -58,9 +66,59 @@ public class ImporterPhoto extends AppCompatActivity {
     }
 
     public void btnClick(View v) {
-        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, SELECTED_PIC);
+        if (ContextCompat.checkSelfPermission(ImporterPhoto.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(ImporterPhoto.this, "You have already granted this permission!",
+                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
+        } else {
+            requestStoragePermission();
+            Toast.makeText(ImporterPhoto.this, "You have already granted this permission!",
+                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
+        }
 
+    }
+
+    private void requestStoragePermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Permission needed")
+                    .setMessage("This permission is needed because of this and that")
+                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(ImporterPhoto.this,
+                                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == STORAGE_PERMISSION_CODE)  {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission GRANTED", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void BtnProcessClick(View v){
