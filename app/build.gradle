@@ -29,4 +29,5 @@ dependencies {
 
     //add library
     implementation 'com.google.android.gms:play-services-vision:16.2.0'
+
 }

@@ -31,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
                                      public void onClick(View v) {
                                          if (v.getId() == R.id.photo) { // C'est notre bouton ? oui, alors affichage d'un message
                                              Toast.makeText(getApplicationContext(), "photo", Toast.LENGTH_SHORT).show();
-                                             Intent prendrephoto = new Intent(MenuActivity.this, PrendrephotoActivity.class);
+                                             Intent prendrephoto = new Intent(MenuActivity.this, MainActivity.class);
                                              startActivity(prendrephoto);
                                          }
                                      }
