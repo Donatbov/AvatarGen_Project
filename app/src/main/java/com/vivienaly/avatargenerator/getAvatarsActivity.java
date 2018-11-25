@@ -106,7 +106,7 @@ public class getAvatarsActivity extends AppCompatActivity {
                 /*
                 notre JSON ressemble à ceci:
                 {"data":
-                        {"URLPhoto":"/pict/Sir.png"}
+                        {"url_image":"/pict/Sir.png"}
                  }
                 // Objet JSON: entre {}
                 // Tableau: entre []
@@ -119,9 +119,9 @@ public class getAvatarsActivity extends AppCompatActivity {
             // On récupère le tableau d'objets qui nous concerne
             JSONArray jsonarraydata = new JSONArray(jsonObject.getString("data"));
 
-            // On récupère un objet JSON du tableau : a l'emplacement 0 ce trouve l'URLPhoto
+            // On récupère un objet JSON du tableau : a l'emplacement 0 ce trouve l'url_image
             JSONObject StringJson = new JSONObject(jsonarraydata.getString(0));
-            // On fait le lien URLPhoto - Objet JSON
+            // On fait le lien url_image - Objet JSON
             UrlResult = ConvertIntoString(StringJson);
             return true;
 
@@ -137,7 +137,7 @@ public class getAvatarsActivity extends AppCompatActivity {
     // Cette méthode rentre les valeurs d'un JSONObjet de type recette dans un objet Recette et retourne celui-ci
     private String  ConvertIntoString (JSONObject StringJson){
         try {
-            return StringJson.getString("URLPhoto");
+            return StringJson.getString("url_image");
 
         }catch(JSONException e){
             if(BuildConfig.DEBUG) {
