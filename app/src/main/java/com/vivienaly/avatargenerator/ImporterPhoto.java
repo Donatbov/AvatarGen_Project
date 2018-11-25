@@ -40,6 +40,7 @@ public class ImporterPhoto extends AppCompatActivity {
     Bitmap myBitmap;
     Bitmap tempBitmap;
     Landmark_struct my_ls;
+    Boolean isImported;
     private int STORAGE_PERMISSION_CODE = 1;
 
 
@@ -52,26 +53,13 @@ public class ImporterPhoto extends AppCompatActivity {
         importer = findViewById(R.id.importer_photo);
         btnProcess = findViewById(R.id.btnProcess);
         import_view = findViewById(R.id.import_view);
+        myBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.face_example);
+        import_view.setImageBitmap(myBitmap);
+        isImported = false;
 
 
     }
 
-    public void btnClick(View v) {
-        if (ContextCompat.checkSelfPermission(ImporterPhoto.this,
-                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(ImporterPhoto.this, "You have already granted this permission!",
-                    Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, SELECTED_PIC);
-        } else {
-            requestStoragePermission();
-            Toast.makeText(ImporterPhoto.this, "You have already granted this permission!",
-                    Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, SELECTED_PIC);
-        }
-
-    }
 
     private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
@@ -112,10 +100,65 @@ public class ImporterPhoto extends AppCompatActivity {
         }
     }
 
+
+    public void btnClick(View v) {
+        if (ContextCompat.checkSelfPermission(ImporterPhoto.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
+        } else {
+            requestStoragePermission();
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
+        }
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+
+            if (requestCode == SELECTED_PIC && resultCode == RESULT_OK
+                    && null != data) {
+
+
+                Uri URI = data.getData();
+                String[] FILE = { MediaStore.Images.Media.DATA };
+
+
+                assert URI != null;
+                Cursor cursor = getContentResolver().query(URI,
+                        FILE, null, null, null);
+
+                assert cursor != null;
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(FILE[0]);
+                ImageDecode = cursor.getString(columnIndex);
+                cursor.close();
+
+                import_view.setImageBitmap(BitmapFactory.decodeFile(ImageDecode));
+
+                isImported = true;
+
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Please try again"+ImageDecode, Toast.LENGTH_LONG)
+                    .show();
+        }
+
+    }
+
+
     public void BtnProcessClick(View v){
-        import_view.setImageBitmap(BitmapFactory
-                .decodeFile(ImageDecode));
-        //myBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.face_example);
+        if (isImported){
+            import_view.setImageBitmap(BitmapFactory.decodeFile(ImageDecode));
+            myBitmap = BitmapFactory.decodeFile(ImageDecode);
+        }else{
+            myBitmap = BitmapFactory.decodeResource(getApplicationContext().getResources(),R.drawable.face_example);
+        }
         myBitmap = BitmapFactory.decodeFile(ImageDecode);
         import_view.setImageBitmap(myBitmap);
 
@@ -147,65 +190,68 @@ public class ImporterPhoto extends AppCompatActivity {
 
     }
 
+    /** Sauvegarde les différents éléments du visage dététés par la classe Landmark **/
     private Landmark_struct detectLandMarks(Face face) {
 
         Landmark_struct ls = new Landmark_struct();
-        for (Landmark landmark:face.getLandmarks()) {
-            int type = landmark.getType();
+        for (Landmark xcellent
+                :face.getLandmarks()) {
+            int type = xcellent.getType();
 
             switch (type) {
                 case Landmark.NOSE_BASE:
-                    ls.setNoseBase_x((int) landmark.getPosition().x);
-                    ls.setNoseBase_y((int) landmark.getPosition().y);
+                    ls.setNoseBase_x((int) xcellent.getPosition().x);
+                    ls.setNoseBase_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.BOTTOM_MOUTH:
-                    ls.setBottomMouth_x((int) landmark.getPosition().x);
-                    ls.setBottomMouth_y((int) landmark.getPosition().y);
+                    ls.setBottomMouth_x((int) xcellent.getPosition().x);
+                    ls.setBottomMouth_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.LEFT_CHEEK:
-                    ls.setLeftCheek_x((int) landmark.getPosition().x);
-                    ls.setLeftCheek_y((int) landmark.getPosition().y);
+                    ls.setLeftCheek_x((int) xcellent.getPosition().x);
+                    ls.setLeftCheek_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.RIGHT_CHEEK:
-                    ls.setRightCheek_x((int) landmark.getPosition().x);
-                    ls.setRightCheek_y((int) landmark.getPosition().y);
+                    ls.setRightCheek_x((int) xcellent.getPosition().x);
+                    ls.setRightCheek_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.LEFT_EAR:
-                    ls.setRightCheek_x((int) landmark.getPosition().x);
-                    ls.setRightCheek_y((int) landmark.getPosition().y);
+                    ls.setRightCheek_x((int) xcellent.getPosition().x);
+                    ls.setRightCheek_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.RIGHT_EAR:
-                    ls.setRigthEar_x((int) landmark.getPosition().x);
-                    ls.setRigthEar_y((int) landmark.getPosition().y);
+                    ls.setRigthEar_x((int) xcellent.getPosition().x);
+                    ls.setRigthEar_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.LEFT_EAR_TIP:
-                    ls.setLeftEarTip_x((int) landmark.getPosition().x);
-                    ls.setLeftEarTip_y((int) landmark.getPosition().y);
+                    ls.setLeftEarTip_x((int) xcellent.getPosition().x);
+                    ls.setLeftEarTip_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.RIGHT_EAR_TIP:
-                    ls.setRigthEar_x((int) landmark.getPosition().x);
-                    ls.setLeftEar_y((int) landmark.getPosition().y);
+                    ls.setRigthEar_x((int) xcellent.getPosition().x);
+                    ls.setLeftEar_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.LEFT_EYE:
-                    ls.setLeftEye_x((int) landmark.getPosition().x);
-                    ls.setLeftEye_y((int) landmark.getPosition().y);
+                    ls.setLeftEye_x((int) xcellent.getPosition().x);
+                    ls.setLeftEye_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.RIGHT_EYE:
-                    ls.setRigthEye_x((int) landmark.getPosition().x);
-                    ls.setRigthEye_y((int) landmark.getPosition().y);
+                    ls.setRigthEye_x((int) xcellent.getPosition().x);
+                    ls.setRigthEye_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.LEFT_MOUTH:
-                    ls.setLeftMouth_x((int) landmark.getPosition().x);
-                    ls.setLeftMouth_y((int) landmark.getPosition().y);
+                    ls.setLeftMouth_x((int) xcellent.getPosition().x);
+                    ls.setLeftMouth_y((int) xcellent.getPosition().y);
                     break;
                 case Landmark.RIGHT_MOUTH:
-                    ls.setRightMouth_x((int) landmark.getPosition().x);
-                    ls.setRightMouth_y((int) landmark.getPosition().y);
+                    ls.setRightMouth_x((int) xcellent.getPosition().x);
+                    ls.setRightMouth_y((int) xcellent.getPosition().y);
                     break;
             }
         }
         return ls;
     }
+
 
     private void drawLandmarks(Landmark_struct ls) {
         /*Bitmap bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
@@ -291,6 +337,7 @@ public class ImporterPhoto extends AppCompatActivity {
 
     }
 
+
     private void drawElementsOnFace(Landmark_struct ls) {
         Bitmap faceBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.faceform_0);
         int faceScaledWidth = faceBitmap.getScaledWidth(canvas);
@@ -311,42 +358,6 @@ public class ImporterPhoto extends AppCompatActivity {
         canvas.drawBitmap(eyegBitmap, ls.getNoseBase_x() - (eyeScaledWidth), ls.getLeftEye_y() - (eyesScaledHeight/2), null);
         canvas.drawBitmap(mouthBitmap, ls.getBottomMouth_x() - (mouthScaledWidth/2), ls.getLeftMouth_y() - mouthScaledHeight/2, null);
         canvas.drawBitmap(noseBitmap, ls.getNoseBase_x() - (noseScaledWidth/2), ls.getNoseBase_y() - (noseScaledHeight/2), null);
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-
-            if (requestCode == SELECTED_PIC && resultCode == RESULT_OK
-                    && null != data) {
-
-
-                Uri URI = data.getData();
-                String[] FILE = { MediaStore.Images.Media.DATA };
-
-
-                Cursor cursor = getContentResolver().query(URI,
-                        FILE, null, null, null);
-
-                cursor.moveToFirst();
-
-                int columnIndex = cursor.getColumnIndex(FILE[0]);
-                ImageDecode = cursor.getString(columnIndex);
-                cursor.close();
-
-                import_view.setImageBitmap(BitmapFactory
-                        .decodeFile(ImageDecode));
-                Toast.makeText(this, ImageDecode, Toast.LENGTH_LONG)
-                        .show();
-                btnProcess.setActivated(true);
-
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, "Please try again"+ImageDecode, Toast.LENGTH_LONG)
-                    .show();
-        }
 
     }
 }

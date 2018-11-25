@@ -57,6 +57,8 @@ public class MenuActivity extends AppCompatActivity {
                                     public void onClick(View v) {
                                         if (v.getId() == R.id.voir_avatar) { // C'est notre bouton ? oui, alors affichage d'un message
                                             Toast.makeText(getApplicationContext(), "voir", Toast.LENGTH_SHORT).show();
+                                            Intent voirAvatars = new Intent(MenuActivity.this, getAvatarsActivity.class);
+                                            startActivity(voirAvatars);
                                         }
                                     }
                                 });
