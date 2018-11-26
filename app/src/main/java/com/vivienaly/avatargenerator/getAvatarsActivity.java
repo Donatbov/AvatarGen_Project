@@ -46,7 +46,7 @@ public class getAvatarsActivity extends AppCompatActivity {
                 if (v.getId() == R.id.buttonGetBDD) { // C'est notre bouton ? oui, alors affichage d'un message
                     Toast.makeText(getApplicationContext(), "get BDD", Toast.LENGTH_SHORT).show();
 
-                    ConnexionBDDTest("10.188.198.211", "USER", "fAfFmu3M5r9uHL56");
+                    ConnexionBDDTest("http://192.168.43.182/android", "root", "");
                 }
             }
         });
@@ -56,14 +56,16 @@ public class getAvatarsActivity extends AppCompatActivity {
 
     //Cette méthode ce connecte à la Base de données exterieure en appelant AsyncTask et demande les données relatives au numéro de journée passé en parametre. le résultat est ensuite mis dans la Base de données interne grace à ajouttable()
     public void ConnexionBDDTest(String stIpConnection, String StUserBDD, String StPasswordBDD) {
-        String stringUrl ="http://"+ stIpConnection +"/getTables.php";
+        String stringUrl ="http://"+ stIpConnection +"/getImages.php";
         // Gets the URL from the UI's text field.
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
+            Log.d("ee", "The response is: ok ");
             Toast.makeText(this,"connexion au réseau ok", Toast.LENGTH_SHORT).show();
             int idernierjour = 9;   // test
             String NumJour = String.valueOf(idernierjour);
+            Log.d("ee", "The response is: 2 ");
             ConnectionBDDExt Connexion = new ConnectionBDDExt(NumJour, StUserBDD, StPasswordBDD,
                     // On appelle le constructeur de ConnexionBDDExt dans lequel
                     // On 'override' la méthode processFinish de l'interface AsyncReponce grâce au 'override' définit ci-dessous
