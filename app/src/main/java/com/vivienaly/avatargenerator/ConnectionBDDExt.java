@@ -2,6 +2,7 @@ package com.vivienaly.avatargenerator;
 
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -70,6 +71,7 @@ public class ConnectionBDDExt extends AsyncTask <String, Void, String> {        
                 return stResult;
             }
         } catch (IOException e) {
+            Log.d("e", "doInBackground: ");
             return "connexion au serveur indisponible: "+ e;
         }
     }
