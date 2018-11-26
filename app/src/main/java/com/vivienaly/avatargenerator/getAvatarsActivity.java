@@ -69,10 +69,11 @@ public class getAvatarsActivity extends AppCompatActivity {
             ConnectionBDDExt Connexion = new ConnectionBDDExt(NumJour, StUserBDD, StPasswordBDD,
                     // On appelle le constructeur de ConnexionBDDExt dans lequel
                     // On 'override' la méthode processFinish de l'interface AsyncReponce grâce au 'override' définit ci-dessous
-                    // ouf...
+                    // ouf..
                     new ConnectionBDDExt.AsyncResponse(){
                         @Override
                         public void processFinish(String output){
+                            Log.d("ee", "The response is: " + output);
                             // Ici, on reçoit le résultat de la méthode onPostExecute(result)
                             if(BuildConfig.DEBUG) {
                                 Log.d("ee", "The response is: " + output);      //utile lors du debuguage
@@ -81,6 +82,7 @@ public class getAvatarsActivity extends AppCompatActivity {
                             if (bTemoin != false) {
                                 // la convertion ,c'est bien passé, on peut faire ce que l'on veut avec UrlResult
                                 bTemoin = AfficheToast(UrlResult);
+                                Log.d("ee", "The response is: " + output);
                                 if (bTemoin != false) {
                                     AfficheToast("l'ajout des tables dans la BDD c'est bien passé");
                                 } else {
