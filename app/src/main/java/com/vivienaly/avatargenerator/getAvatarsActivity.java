@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -21,6 +22,7 @@ public class getAvatarsActivity extends AppCompatActivity {
 
     // Variables globales
     String UrlResult;
+    String IPConnection = "192.168.43.182";
 
 
     @Override
@@ -30,6 +32,9 @@ public class getAvatarsActivity extends AppCompatActivity {
 
         Button ButtonDevice = (Button)findViewById(R.id.buttonGetDevice); // Récupération de l'instance voir les avatars
         Button ButtonBDD = (Button)findViewById(R.id.buttonGetBDD); // Récupération de l'instance voir les avatars
+        Button ButtonValider = (Button)findViewById(R.id.buttonValidation); // Récupération de l'instance voir les avatars
+        final EditText editText = (EditText) findViewById(R.id.editTextBDD); // Récupération de l'instance voir les avatars
+        editText.setText(IPConnection);
 
         //evenement click sur le bouton
         ButtonDevice.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +51,16 @@ public class getAvatarsActivity extends AppCompatActivity {
                 if (v.getId() == R.id.buttonGetBDD) { // C'est notre bouton ? oui, alors affichage d'un message
                     Toast.makeText(getApplicationContext(), "get BDD", Toast.LENGTH_SHORT).show();
 
-                    ConnexionBDDTest("http://192.168.43.182", "root", "");
+                    ConnexionBDDTest("http://"+IPConnection, "root", "");
+                }
+            }
+        });
+
+        //evenement click sur le bouton
+        ButtonValider.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (v.getId() == R.id.buttonValidation) { // C'est notre bouton ? oui, alors affichage d'un message
+                    IPConnection = editText.getText().toString();
                 }
             }
         });

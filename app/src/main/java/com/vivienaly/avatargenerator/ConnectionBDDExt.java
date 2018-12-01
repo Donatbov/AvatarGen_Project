@@ -3,6 +3,7 @@ package com.vivienaly.avatargenerator;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -117,6 +118,8 @@ public class ConnectionBDDExt extends AsyncTask <String, Void, String> {        
                     .appendQueryParameter("user", stUserBDD)
                     .appendQueryParameter("password", stPasswordBDD);
             String query = builder.build().getEncodedQuery();
+            Log.e("MYAPP", query);
+
 
             //L'output stream sert à placer le le parametre de requete, le login, ainsi que le mot de passe en parametre de la requete via l'url via la méthode POST.
             //On peut ainsi la récupérer dans le script PHP
