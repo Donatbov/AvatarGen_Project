@@ -1,5 +1,7 @@
 package com.vivienaly.avatargenerator;
 
+/** Classe pour aider à la manipulation des données du visage **/
+
 public class Landmark_struct {
     private int noseBase_x;
     private int noseBase_y;
@@ -38,6 +40,7 @@ public class Landmark_struct {
     private int rigthEye_y;
     private boolean rigthEye_isSet;
 
+    // constructeur
     public Landmark_struct() {
         noseBase_isSet = false;
         bottomMouth_isSet = false;
