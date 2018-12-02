@@ -348,25 +348,25 @@ public class ImporterPhoto_activity extends AppCompatActivity {
         try {
             faceSize = 6*abs(ls.getBottomMouth_y() - ls.getNoseBase_y());
         }catch (Exception e){
-            faceSize = 100;
+            faceSize = 30;
             System.err.println("could not set faceSize, also set to default size. error tag: " + e );
         }
         try {
             eyesSize = abs(ls.getLeftEye_x() - ls.getRigthEye_x());
         }catch (Exception e){
-            eyesSize = 30;
+            eyesSize = 10;
             System.err.println("could not set eyesSize, also set to default size. error tag: " + e );
         }
         try {
             mouthSize = abs(ls.getLeftMouth_x() - ls.getRightMouth_x());
         }catch (Exception e){
-            mouthSize = 50;
+            mouthSize = 10;
             System.err.println("could not set mouthSize, also set to default size. error tag: " + e );
         }
         try {
             noseSize = abs(ls.getBottomMouth_y() - ls.getNoseBase_y());
         }catch (Exception e){
-            noseSize = 30;
+            noseSize = 10;
             System.err.println("could not set noseSize, also set to default size. error tag: " + e );
         }
 
