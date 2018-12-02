@@ -30,6 +30,7 @@ import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import com.google.android.gms.vision.face.Landmark;
 
+import static java.lang.StrictMath.PI;
 import static java.lang.StrictMath.abs;
 
 public class ImporterPhoto extends AppCompatActivity {
@@ -344,37 +345,69 @@ public class ImporterPhoto extends AppCompatActivity {
     private void drawElementsOnFace(Landmark_struct ls) {
         // définition des tailles relative des élément par rapport à la distance entre les points
         // nb: ces valeurs ne sont pas des véritées absolues, mais des proportions qui nous paraissent raisonnables
-        int faceSize = 6*abs(ls.getBottomMouth_y() - ls.getNoseBase_y());
-        int eyesSize = abs(ls.getLeftEye_x() - ls.getRigthEye_x());
-        int mouthSize = abs(ls.getLeftMouth_x() - ls.getRightMouth_x());
-        int noseSize = abs(ls.getBottomMouth_y() - ls.getNoseBase_y());
+        int faceSize, eyesSize, mouthSize, noseSize;
+        try {
+            faceSize = 6*abs(ls.getBottomMouth_y() - ls.getNoseBase_y());
+        }catch (Exception e){
+            faceSize = 100;
+            System.err.println("could not set faceSize, also set to default size. error tag: " + e );
+        }
+        try {
+            eyesSize = abs(ls.getLeftEye_x() - ls.getRigthEye_x());
+        }catch (Exception e){
+            eyesSize = 30;
+            System.err.println("could not set eyesSize, also set to default size. error tag: " + e );
+        }
+        try {
+            mouthSize = abs(ls.getLeftMouth_x() - ls.getRightMouth_x());
+        }catch (Exception e){
+            mouthSize = 50;
+            System.err.println("could not set mouthSize, also set to default size. error tag: " + e );
+        }
+        try {
+            noseSize = abs(ls.getBottomMouth_y() - ls.getNoseBase_y());
+        }catch (Exception e){
+            noseSize = 30;
+            System.err.println("could not set noseSize, also set to default size. error tag: " + e );
+        }
 
+        double inclinaisonTete = ls.inclinaisonTete();
 
         Bitmap faceBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.faceform_0);
         faceBitmap = resizeImage(faceBitmap, faceSize);
+        faceBitmap = rotateImage(faceBitmap, inclinaisonTete);
         int faceScaledWidth = faceBitmap.getScaledWidth(canvas);
         int faceScaledHeight = faceBitmap.getScaledHeight(canvas);
+
         Bitmap eyeGBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.eye_g);
         eyeGBitmap = resizeImage(eyeGBitmap, eyesSize);
+        eyeGBitmap = rotateImage(eyeGBitmap, inclinaisonTete);
+        int eyeGScaledWidth = eyeGBitmap.getScaledWidth(canvas);
+        int eyeGdScaledHeight = eyeGBitmap.getScaledHeight(canvas);
+
         Bitmap eyeDBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.eye_d);
         eyeDBitmap = resizeImage(eyeDBitmap, eyesSize);
-        int eyeDScaledWidth = eyeGBitmap.getScaledWidth(canvas);
-        int eyesDScaledHeight = eyeGBitmap.getScaledHeight(canvas);
-        int eyeGScaledWidth = eyeDBitmap.getScaledWidth(canvas);
-        int eyeGdScaledHeight = eyeDBitmap.getScaledHeight(canvas);
+        eyeDBitmap = rotateImage(eyeDBitmap, inclinaisonTete);
+        int eyeDScaledWidth = eyeDBitmap.getScaledWidth(canvas);
+        int eyesDScaledHeight = eyeDBitmap.getScaledHeight(canvas);
+
+
         Bitmap mouthBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.mouth_1);
         mouthBitmap = resizeImage(mouthBitmap, mouthSize);
+        mouthBitmap = rotateImage(mouthBitmap, inclinaisonTete);
         int mouthScaledWidth = mouthBitmap.getScaledWidth(canvas);
         int mouthScaledHeight = mouthBitmap.getScaledHeight(canvas);
+
         Bitmap noseBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.nose_4);
         noseBitmap = resizeImage(noseBitmap, noseSize);
+        noseBitmap = rotateImage(noseBitmap, inclinaisonTete);
         int noseScaledWidth = noseBitmap.getScaledWidth(canvas);
         int noseScaledHeight = noseBitmap.getScaledHeight(canvas);
 
         // On draw les éléments au bon endroit
-        //canvas.drawBitmap(faceBitmap, ls.getNoseBase_x() - (faceScaledWidth/2), ls.getNoseBase_y() - faceSize/6 - (faceScaledHeight/2), null);
-        canvas.drawBitmap(eyeGBitmap, ls.getLeftEye_x() - (eyeGScaledWidth/2) , ls.getLeftEye_y() - (eyeGScaledWidth/2), null);
-        canvas.drawBitmap(eyeDBitmap, ls.getRigthEye_x() - (eyeDScaledWidth/2), ls.getRigthEye_y() - (eyeDScaledWidth/2), null);
+        // canvas.drawBitmap(faceBitmap, ls.getNoseBase_x() - (faceScaledWidth/2), ls.getNoseBase_y() - faceSize/6 - (faceScaledHeight/2), null);
+        canvas.drawBitmap(eyeGBitmap, ls.getLeftEye_x() - (eyeGScaledWidth/2) , ls.getLeftEye_y() - (eyeGdScaledHeight/2), null);
+        canvas.drawBitmap(eyeDBitmap, ls.getRigthEye_x() - (eyeDScaledWidth/2), ls.getRigthEye_y() - (eyesDScaledHeight/2), null);
         canvas.drawBitmap(mouthBitmap, ls.getRightMouth_x(), ls.getBottomMouth_y() - mouthScaledHeight, null);
         canvas.drawBitmap(noseBitmap, ls.getNoseBase_x() - (noseScaledWidth/2), ls.getNoseBase_y() - (noseScaledHeight/2), null);
 
@@ -410,6 +443,19 @@ public class ImporterPhoto extends AppCompatActivity {
 
         return resizedBitmap;
     }
+
+    public static Bitmap rotateImage(Bitmap src, double rad) {
+        // /!\ seems don't working
+
+        // create new matrix
+        Matrix matrix = new Matrix();
+        // setup rotation degree
+        matrix.postRotate( (float)((180 * rad) / PI));
+        Bitmap bmp = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
+        return bmp;
+    }
+
+
 
 }
 

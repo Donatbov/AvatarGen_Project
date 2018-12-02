@@ -1,5 +1,8 @@
 package com.vivienaly.avatargenerator;
 
+import static java.lang.StrictMath.PI;
+import static java.lang.StrictMath.atan;
+
 /** Classe pour aider à la manipulation des données du visage **/
 
 public class Landmark_struct {
@@ -54,6 +57,27 @@ public class Landmark_struct {
         rigthEarTip_isSet = false;
         leftEye_isSet = false;
         rigthEye_isSet = false;
+    }
+
+    // retourene l'inclinaison de la tete en radian (basée sur la position des yeux
+    public double inclinaisonTete() {
+        if (rigthEye_isSet && leftEye_isSet) {
+            double teta = 0;
+
+            if (rigthEye_x == leftEye_x) {
+                if (rigthEye_y <= leftEye_y)
+                    teta = PI / 2;
+                else
+                    teta = PI / 2;
+            } else if (rigthEye_x > leftEye_x) {
+                teta = atan((-leftEye_y + rigthEye_y) / (leftEye_x - rigthEye_x)) + PI;
+            } else {
+                teta = atan((-leftEye_y + rigthEye_y) / (leftEye_x - rigthEye_x));
+            }
+            return teta;
+        }else{
+            return 0;
+        }
     }
 
     //accesseurs

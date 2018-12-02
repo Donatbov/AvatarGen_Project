@@ -29,8 +29,7 @@ public class MenuActivity extends AppCompatActivity {
         //evenement click sur le bouton
         photo.setOnClickListener(new View.OnClickListener() {
                                      public void onClick(View v) {
-                                         if (v.getId() == R.id.photo) { // C'est notre bouton ? oui, alors affichage d'un message
-                                             Toast.makeText(getApplicationContext(), "photo", Toast.LENGTH_SHORT).show();
+                                         if (v.getId() == R.id.photo) {
                                              Intent prendrephoto = new Intent(MenuActivity.this, PrendrephotoActivity.class);
                                              startActivity(prendrephoto);
                                          }
@@ -39,8 +38,7 @@ public class MenuActivity extends AppCompatActivity {
 
         import_photo.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        if (v.getId() == R.id.importer_photo) { // C'est notre bouton ? oui, alors affichage d'un message
-                                            Toast.makeText(getApplicationContext(), "importer", Toast.LENGTH_SHORT).show();
+                                        if (v.getId() == R.id.importer_photo) {
                                             Intent importerphoto = new Intent(MenuActivity.this, ImporterPhoto.class);
                                             startActivity(importerphoto);
                                         }
@@ -48,14 +46,14 @@ public class MenuActivity extends AppCompatActivity {
                                 });
         creer_avatar.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        if (v.getId() == R.id.creer_avatar) { // C'est notre bouton ? oui, alors affichage d'un message
+                                        if (v.getId() == R.id.creer_avatar) {
                                             Toast.makeText(getApplicationContext(), "creer", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
         voir_avatar.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
-                                        if (v.getId() == R.id.voir_avatar) { // C'est notre bouton ? oui, alors affichage d'un message
+                                        if (v.getId() == R.id.voir_avatar) {
                                             Toast.makeText(getApplicationContext(), "voir", Toast.LENGTH_SHORT).show();
                                             Intent voirAvatars = new Intent(MenuActivity.this, getAvatarsActivity.class);
                                             startActivity(voirAvatars);
