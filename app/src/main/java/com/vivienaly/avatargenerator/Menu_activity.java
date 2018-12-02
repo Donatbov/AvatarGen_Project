@@ -1,22 +1,14 @@
 package com.vivienaly.avatargenerator;
 
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.*;
 import android.view.View;
 
 
-public class MenuActivity extends AppCompatActivity {
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+public class Menu_activity extends AppCompatActivity {
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +22,7 @@ public class MenuActivity extends AppCompatActivity {
         photo.setOnClickListener(new View.OnClickListener() {
                                      public void onClick(View v) {
                                          if (v.getId() == R.id.photo) {
-                                             Intent prendrephoto = new Intent(MenuActivity.this, PrendrephotoActivity.class);
+                                             Intent prendrephoto = new Intent(Menu_activity.this, Prendrephoto_activity.class);
                                              startActivity(prendrephoto);
                                          }
                                      }
@@ -39,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
         import_photo.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         if (v.getId() == R.id.importer_photo) {
-                                            Intent importerphoto = new Intent(MenuActivity.this, ImporterPhoto.class);
+                                            Intent importerphoto = new Intent(Menu_activity.this, ImporterPhoto_activity.class);
                                             startActivity(importerphoto);
                                         }
                                     }
@@ -54,8 +46,7 @@ public class MenuActivity extends AppCompatActivity {
         voir_avatar.setOnClickListener(new View.OnClickListener() {
                                     public void onClick(View v) {
                                         if (v.getId() == R.id.voir_avatar) {
-                                            Toast.makeText(getApplicationContext(), "voir", Toast.LENGTH_SHORT).show();
-                                            Intent voirAvatars = new Intent(MenuActivity.this, getAvatarsActivity.class);
+                                            Intent voirAvatars = new Intent(Menu_activity.this, getAvatars_activity.class);
                                             startActivity(voirAvatars);
                                         }
                                     }

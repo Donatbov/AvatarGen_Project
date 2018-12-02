@@ -28,16 +28,16 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="face" />
 
-        <activity android:name=".MenuActivity">
+        <activity android:name=".Menu_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PrendrephotoActivity" />
-        <activity android:name=".ImporterPhoto" />
-        <activity android:name=".getAvatarsActivity"></activity>
+        <activity android:name=".Prendrephoto_activity" />
+        <activity android:name=".ImporterPhoto_activity" />
+        <activity android:name=".getAvatars_activity"></activity>
     </application>
 
 </manifest>

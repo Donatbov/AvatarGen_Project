@@ -1,7 +1,6 @@
 package com.vivienaly.avatargenerator;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -16,24 +15,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
-public class getAvatarsActivity extends AppCompatActivity {
+public class getAvatars_activity extends AppCompatActivity {
 
     // Variables globales
     String UrlResult;
-    String IPConnection = "192.168.43.182";
+    String IPConnection;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.get_avatars);
+        setContentView(R.layout.activity_get_avatars);
 
         Button ButtonDevice = (Button)findViewById(R.id.buttonGetDevice); // Récupération de l'instance voir les avatars
         Button ButtonBDD = (Button)findViewById(R.id.buttonGetBDD); // Récupération de l'instance voir les avatars
         Button ButtonValider = (Button)findViewById(R.id.buttonValidation); // Récupération de l'instance voir les avatars
         final EditText editText = (EditText) findViewById(R.id.editTextBDD); // Récupération de l'instance voir les avatars
+        IPConnection = "192.168.43.182";    // default way
         editText.setText(IPConnection);
 
         //evenement click sur le bouton
@@ -68,7 +66,7 @@ public class getAvatarsActivity extends AppCompatActivity {
 
     /**Méthodes relatives à la récupération des données sur la base externe**/
 
-    //Cette méthode ce connecte à la Base de données exterieure en appelant AsyncTask et demande les données relatives au numéro de journée passé en parametre. le résultat est ensuite mis dans la Base de données interne grace à ajouttable()
+    //Cette méthode ce connecte à la Base de données exterieure en appelant AsyncTask et demande les données relatives au numéro de de requete passé en parametre. le résultat est ensuite récupéré par notre application
     public void ConnexionBDDTest(String stIpConnection, String StUserBDD, String StPasswordBDD) {
         String stringUrl =stIpConnection +"/android/getImages.php";
         Log.d("e", "ConnexionBDDTest: "+stringUrl);
@@ -78,10 +76,10 @@ public class getAvatarsActivity extends AppCompatActivity {
         if (networkInfo != null && networkInfo.isConnected()) {
             Log.d("ee", "The response is: ok ");
             Toast.makeText(this,"connexion au réseau ok", Toast.LENGTH_SHORT).show();
-            int idernierjour = 1;   // test
-            String NumJour = String.valueOf(idernierjour);
+            int iValeurRequeteInterressante = 42;   // test
+            String NumRequete = String.valueOf(iValeurRequeteInterressante);
             Log.d("ee", "The response is: 2 "+stringUrl+" ici");
-            ConnectionBDDExt Connexion = new ConnectionBDDExt(NumJour, StUserBDD, StPasswordBDD,
+            ConnectionBDDExt Connexion = new ConnectionBDDExt(NumRequete, StUserBDD, StPasswordBDD,
                     // On appelle le constructeur de ConnexionBDDExt dans lequel
                     // On 'override' la méthode processFinish de l'interface AsyncReponce grâce au 'override' définit ci-dessous
                     // ouf..
@@ -153,8 +151,8 @@ public class getAvatarsActivity extends AppCompatActivity {
     }
 
 
-    // Cette méthode rentre les valeurs d'un JSONObjet de type recette dans un objet Recette et retourne celui-ci
-    private String  ConvertIntoString (JSONObject StringJson){
+    // Cette méthode convertit les valeurs d'un JSONObjet en String et retourne celui-ci
+    private String ConvertIntoString (JSONObject StringJson){
         try {
             return StringJson.getString("url_image");
 
@@ -166,9 +164,6 @@ public class getAvatarsActivity extends AppCompatActivity {
             return null;
         }
     }
-
-
-
 
 
     //Cette méthode permet d'afiicher un toast dans le thread en cours

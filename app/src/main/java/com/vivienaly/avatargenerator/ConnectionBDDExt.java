@@ -32,13 +32,13 @@ public class ConnectionBDDExt extends AsyncTask <String, Void, String> {        
     }
 
     //constructeur de la classe
-    public ConnectionBDDExt(String NumJourneeRequete_in,String StUser,String stPassword, AsyncResponse delegate) {
+    public ConnectionBDDExt(String NumRequete_in, String StUser, String stPassword, AsyncResponse delegate) {
         /**
          * Constructeur de l'asyncTask.
          * @param delegate
          */
         this.delegate = delegate;   //instanciation de l'interface 'delegate' avec la fonction placé en parametre
-        this.stParamRequete = NumJourneeRequete_in;
+        this.stParamRequete = NumRequete_in;
         this.stUserBDD = StUser;
         this.stPasswordBDD = stPassword;
     }
@@ -100,7 +100,7 @@ public class ConnectionBDDExt extends AsyncTask <String, Void, String> {        
     private String downloadUrl(String myurl, String stParamRequete_in) throws IOException {
         /**
          * @param myurl : url pour se connecter au serveur apache
-         * @param NumJourneeRequete : numero de la journee a envoyer au script PHP
+         * @param stParamRequete_in : numero de la requete a envoyer au script PHP
          * @return : String contenant le résultat de la requte au format JSON
          */
         InputStream is = null;

@@ -33,7 +33,7 @@ import com.google.android.gms.vision.face.Landmark;
 import static java.lang.StrictMath.PI;
 import static java.lang.StrictMath.abs;
 
-public class ImporterPhoto extends AppCompatActivity {
+public class ImporterPhoto_activity extends AppCompatActivity {
     private static final int SELECTED_PIC = 1;
 
     Button importer;
@@ -65,6 +65,7 @@ public class ImporterPhoto extends AppCompatActivity {
     }
 
 
+    // méthode utile pour aller chercher une photo dans la mémoire du téléphone
     private void requestStoragePermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -75,7 +76,7 @@ public class ImporterPhoto extends AppCompatActivity {
                     .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(ImporterPhoto.this,
+                            ActivityCompat.requestPermissions(ImporterPhoto_activity.this,
                                     new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
                         }
                     })
@@ -93,6 +94,8 @@ public class ImporterPhoto extends AppCompatActivity {
         }
     }
 
+
+    // méthode utile pour aller chercher une photo dans la mémoire du téléphone
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == STORAGE_PERMISSION_CODE)  {
@@ -105,32 +108,16 @@ public class ImporterPhoto extends AppCompatActivity {
     }
 
 
-    public void btnClick(View v) {
-        if (ContextCompat.checkSelfPermission(ImporterPhoto.this,
-                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, SELECTED_PIC);
-        } else {
-            requestStoragePermission();
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(intent, SELECTED_PIC);
-        }
-
-    }
-
-
+    // méthode pour aller chercher une photo dans la mémoire du téléphone
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
 
-            if (requestCode == SELECTED_PIC && resultCode == RESULT_OK
-                    && null != data) {
-
+            if (requestCode == SELECTED_PIC && resultCode == RESULT_OK && null != data) {
 
                 Uri URI = data.getData();
                 String[] FILE = { MediaStore.Images.Media.DATA };
-
 
                 assert URI != null;
                 Cursor cursor = getContentResolver().query(URI,
@@ -146,17 +133,30 @@ public class ImporterPhoto extends AppCompatActivity {
                 import_view.setImageBitmap(BitmapFactory.decodeFile(ImageDecode));
 
                 isImported = true;
-
             }
         } catch (Exception e) {
-            Toast.makeText(this, "Please try again"+ImageDecode, Toast.LENGTH_LONG)
+            Toast.makeText(this, "Please try again" + ImageDecode, Toast.LENGTH_LONG)
                     .show();
+        }
+    }
+
+
+    // appui sur le bouton "importer photo"
+    public void btnClick(View v) {
+        if (ContextCompat.checkSelfPermission(ImporterPhoto_activity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
+        } else {
+            requestStoragePermission();
+            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, SELECTED_PIC);
         }
 
     }
 
 
-    //Effectue le traitement sur l'image importée ou sur l'image par défaut lors de l'appuis sur le bouton
+    // appui sur le bouton "process"
     public void BtnProcessClick(View v){
         // on crée le canvas qui contient l'image à traiter
         if (isImported){
@@ -180,29 +180,27 @@ public class ImporterPhoto extends AppCompatActivity {
         if (!faceDetector.isOperational()){
             Toast.makeText(this, "Face Detector could not be set up on your device", Toast.LENGTH_SHORT).show();
         }else{
-            // Dans le cas ou on a un flux d'images.    nb: ici on ne passera donc qu'une fois dans la boucle for
+            // Dans le cas ou on a un flux d'images.    nb: ici on ne passera qu'une seule fois dans la boucle for
             Frame frame = new Frame.Builder().setBitmap(myBitmap).build();
             SparseArray<Face> sparseArray = faceDetector.detect(frame);
             for (int i = 0; i<sparseArray.size(); i++){
                 Face face = sparseArray.valueAt(i);
-                // on range les informations qui nous interesse dans la classe Landmark_Struct
-                my_ls = detectLandMarks(face);
+                my_ls = detectLandMarks(face);      // on range les informations qui nous interesse dans la classe Landmark_Struct
+                drawElementsOnFace(my_ls);          // Dessine les png aux bons endroits
+                drawLandmarks(my_ls);               // Dessine des points de couleur sur les différents éléments reconnus
             }
-            // Dessine les png aux bons endroits
-            drawElementsOnFace(my_ls);
-            // Dessine des points de couleur sur les différents éléments reconnus
-            drawLandmarks(my_ls);
 
             import_view.setImageBitmap(tempBitmap);
         }
     }
 
 
-    /** Sauvegarde les différents éléments du visage dététés par la classe Landmark
+
+
+    /** Sauvegarde les différents éléments du visage dététés par la classe Landmark dans la classe Landmark_struct
      * Uses the google API vision.face : https://developers.google.com/android/reference/com/google/android/gms/vision/face/package-summary
      **/
     private Landmark_struct detectLandMarks(Face face) {
-
         Landmark_struct ls = new Landmark_struct();
         for (Landmark xcellent
                 :face.getLandmarks()) {
@@ -263,6 +261,7 @@ public class ImporterPhoto extends AppCompatActivity {
     }
 
 
+    // affiche tous les éléments reconnus par la classe Landark avec des points de différentes couleurs
     private void drawLandmarks(Landmark_struct ls) {
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -338,10 +337,10 @@ public class ImporterPhoto extends AppCompatActivity {
         }else {
             Toast.makeText(this,"RIGHT_EAR_TIP property is empty", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 
+    // Affiche les images du dossier res au bon endroit sur la personne
     private void drawElementsOnFace(Landmark_struct ls) {
         // définition des tailles relative des élément par rapport à la distance entre les points
         // nb: ces valeurs ne sont pas des véritées absolues, mais des proportions qui nous paraissent raisonnables
@@ -371,8 +370,12 @@ public class ImporterPhoto extends AppCompatActivity {
             System.err.println("could not set noseSize, also set to default size. error tag: " + e );
         }
 
+
+        // On récupère l'inclinaison de la tete basée sur la position des yeux
         double inclinaisonTete = ls.inclinaisonTete();
 
+
+        // On définit, redimentionne et incline nos bitmaps
         Bitmap faceBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.faceform_0);
         faceBitmap = resizeImage(faceBitmap, faceSize);
         faceBitmap = rotateImage(faceBitmap, inclinaisonTete);
@@ -391,7 +394,6 @@ public class ImporterPhoto extends AppCompatActivity {
         int eyeDScaledWidth = eyeDBitmap.getScaledWidth(canvas);
         int eyesDScaledHeight = eyeDBitmap.getScaledHeight(canvas);
 
-
         Bitmap mouthBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.mouth_1);
         mouthBitmap = resizeImage(mouthBitmap, mouthSize);
         mouthBitmap = rotateImage(mouthBitmap, inclinaisonTete);
@@ -404,16 +406,17 @@ public class ImporterPhoto extends AppCompatActivity {
         int noseScaledWidth = noseBitmap.getScaledWidth(canvas);
         int noseScaledHeight = noseBitmap.getScaledHeight(canvas);
 
+
         // On draw les éléments au bon endroit
         // canvas.drawBitmap(faceBitmap, ls.getNoseBase_x() - (faceScaledWidth/2), ls.getNoseBase_y() - faceSize/6 - (faceScaledHeight/2), null);
         canvas.drawBitmap(eyeGBitmap, ls.getLeftEye_x() - (eyeGScaledWidth/2) , ls.getLeftEye_y() - (eyeGdScaledHeight/2), null);
         canvas.drawBitmap(eyeDBitmap, ls.getRigthEye_x() - (eyeDScaledWidth/2), ls.getRigthEye_y() - (eyesDScaledHeight/2), null);
         canvas.drawBitmap(mouthBitmap, ls.getRightMouth_x(), ls.getBottomMouth_y() - mouthScaledHeight, null);
         canvas.drawBitmap(noseBitmap, ls.getNoseBase_x() - (noseScaledWidth/2), ls.getNoseBase_y() - (noseScaledHeight/2), null);
-
     }
 
 
+    // méthode qui permet de redimmentionner un bitmap en ardant les proportions
     static private Bitmap resizeImage(Bitmap bitmap, int newSize){
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -444,8 +447,10 @@ public class ImporterPhoto extends AppCompatActivity {
         return resizedBitmap;
     }
 
-    public static Bitmap rotateImage(Bitmap src, double rad) {
-        // /!\ seems don't working
+
+    // méthode qui permet de tourner un bitmap
+    static private Bitmap rotateImage(Bitmap src, double rad) {
+        // /!\ doesn't seems working
 
         // create new matrix
         Matrix matrix = new Matrix();
@@ -454,8 +459,6 @@ public class ImporterPhoto extends AppCompatActivity {
         Bitmap bmp = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
         return bmp;
     }
-
-
 
 }
 

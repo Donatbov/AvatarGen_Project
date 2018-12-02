@@ -2,11 +2,7 @@ package com.vivienaly.avatargenerator;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,12 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class PrendrephotoActivity extends AppCompatActivity {
+public class Prendrephoto_activity extends AppCompatActivity {
 
         ImageView imageAffiche;
         Button capture;
@@ -28,9 +19,10 @@ public class PrendrephotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_prendrephoto);
-         capture = (Button) findViewById(R.id.capture); // Récupération de l'instance voir les avatars
-        imageAffiche = (ImageView) findViewById(R.id.image);
+        setContentView(R.layout.activity_prendre_photo);
+        capture = findViewById(R.id.capture); // Récupération de l'instance voir les avatars
+        imageAffiche = findViewById(R.id.image);
+
         //evenement click sur le bouton
         capture.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -44,22 +36,8 @@ public class PrendrephotoActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
-    private File getFile(){
 
-        File folder = new File("sdcard/camera_app");
-
-        if(!folder.exists())
-        {
-            folder.mkdir();
-        }
-
-        File image_file = new File(folder,"cam_image.jpg");
-        return image_file;
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
